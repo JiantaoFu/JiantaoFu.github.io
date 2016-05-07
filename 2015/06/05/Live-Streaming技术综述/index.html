@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hexo">
+    <title>Live Streaming技术综述 - Hexo</title>
+    <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Hexo">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://jiantaofu.github.io">Hexo</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+</nav>
+
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Live Streaming技术综述</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Fri Jun 05 2015 17:24:52 GMT-0700">
+        Jun 05, 2015
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>#Live Streaming技术综述</p>
+<p>##架构图</p>
+<p><img src="Live-Streaming技术综述/unified-streaming.png" alt="unified-streaming"></p>
+<p>系统大致可以分解为如下几部分：</p>
+<ol>
+<li>音视频的编码。</li>
+<li>将编码后的（实时或VOD）数据给到Streaming Server，Server可以对数据进行DRM加密，转码等。</li>
+<li>Streaming Server根据客户端的请求将数据转化为不同的格式，通过不同的协议分发到客户端。</li>
+</ol>
+<p>可以参考这里的<a href="http://info.wowza.com/live-video-streaming-solutions-watch-how-to-video" target="_blank" rel="external">视频</a></p>
+<p>下面根据数据流的不同阶段来进行分析。</p>
+<p>##技术分析</p>
+<p>###音视频的编码和发布</p>
+<p>####商业产品####</p>
+<p>商业产品包括软件和硬件设备，下面主要列举了一些软件，硬件提供的功能和软件类似，并且有些还有辅助的软件。</p>
+<p><strong><em>1. Wirecast</em></strong></p>
+<p>Wirecast支持多种<a href="http://www.telestream.net/wirecast/features.htm#capture" target="_blank" rel="external">输入源</a>，包括WebCam, 视频采集卡，Web Stream, IP Camera等。除了音视频编码外，Wirecast还有许多相关的<a href="http://www.telestream.net/application-content/wirecast/help/6-0/mac/tutorials.htm" target="_blank" rel="external">辅助功能</a>，比如不同场景(shot)的切换，音频的组合选择，标题编辑，ScoreBoard，虚拟场景。Wirecast支持多种不同的Streaming平台，并且有一个YouTube的<a href="http://www.telestream.net/application-content/wirecast/YouTube/help/6-0/mac/index.html#Wirecast_Users_Guide/Tutorials/Tutorials.htm" target="_blank" rel="external">定制版本</a>.</p>
+<p>API支持: Wirecast API并没有提供比UI操作更丰富的<a href="http://forum.telestream.net/forum/messageview.aspx?catid=44&amp;threadid=10540" target="_blank" rel="external">接口</a>，mac下可以通过<a href="http://forum.telestream.net/forum/messageview.aspx?catid=45&amp;threadid=12517" target="_blank" rel="external">applescript控制</a>，Windows下提供了com接口（有第三方的<a href="https://github.com/DynamoBen/Wirecast/tree/master/API" target="_blank" rel="external">python API</a>)，并非一个可以扩展的框架。</p>
+<p>Encoder: H264, X264</p>
+<p>价格: <a href="http://www.telestream.net/wirecast/store.asp" target="_blank" rel="external">Studio $495, Pro $995</a></p>
+<p>平台: MAC/WINDOWS</p>
+<p><strong><em>2. UStream Producer</em></strong></p>
+<p>功能和Wirecast类似。</p>
+<p>价格: <a href="http://www.telestream.net/wirecast/store.asp" target="_blank" rel="external">Studio $279, Pro $549</a></p>
+<p><strong><em>3. Flash Media Live Encoder</em></strong></p>
+<p>Flash Media Live Encoder支持的输入源包括webcam和视频采集卡，只支持一路视频。没有其他一些辅助功能。</p>
+<p>API:  仅仅提供了<a href="http://help.adobe.com/en_US/FlashMediaLiveEncoder/3.0/Using/WS5b3ccc516d4fbf351e63e3d11c104babd5-7ffc.html" target="_blank" rel="external">command line</a>工具</p>
+<p>Encoder: H264, VP6</p>
+<p>平台: MAC/WINDOWS</p>
+<p>价格: Freeware</p>
+<p><strong><em>4. XSplit</em></strong></p>
+<p>XSplit输入源包括Screen/Camera，支持多个场景(Scence)，标题编辑等辅助功能。</p>
+<p>Encoder: H264</p>
+<p>API: 无</p>
+<p>平台: WINDOWS</p>
+<p>价格: Personal $39.95/year,  Premium $59.95/year</p>
+<p><strong><em>VID Blaster</em></strong></p>
+<p>功能和Wirecast类似。</p>
+<p>####开源产品####</p>
+<p><strong><em>Open Broadcast Software</em></strong></p>
+<p>OBS默认支持的<a href="https://github.com/jp9000/OBS/wiki/Built-in-Sources" target="_blank" rel="external">输入源</a>比较有限，但可以通过plugin方式进行扩展。OBS也支持多个场景(<a href="https://jp9000.github.io/OBS/general/scenes.html" target="_blank" rel="external">Scene</a>)，标题编辑，也支持多种不同的Streaming平台，如<a href="https://twitchtips.com/obs-setup/" target="_blank" rel="external">TWITCH</a>, <a href="https://www.youtube.com/watch?v=dD0Z9VylyU8" target="_blank" rel="external">YouTube</a>。OBS原先只支持<a href="https://github.com/jp9000/OBS" target="_blank" rel="external">Windows</a>，新版本可以<a href="https://github.com/jp9000/obs-studio" target="_blank" rel="external">跨平台</a>，但还不完善。</p>
+<p>API: 提供plugin接口</p>
+<p><strong><em>WebcamStudio</em></strong></p>
+<p>(WebcamStudio)[<a href="https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。" target="_blank" rel="external">https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。</a></p>
+<p>###Streaming服务器和cloud平台</p>
+<p><strong><em>1. WOWZA</em></strong></p>
+<p>产品线完整，包含Server和Cloud。支持所有主流的协议(HLS, HDS等)。输入源支持的也非常丰富，并且支持比较多的合作厂商的设备。输入源支持Push和Pull两种方式。</p>
+<p><a href="http://www.wowza.com/products/streaming-cloud/features" target="_blank" rel="external">Streaming Cloud</a>现在的API未公开，但看起来操作应该不会超出UI提供的功能。</p>
+<p><a href="http://www.wowza.com/products/streaming-engine" target="_blank" rel="external">Streaming Server</a>非常成熟, <a href="http://www.wowza.com/resources/WowzaStreamingEngine_ServerSideAPI.pdf" target="_blank" rel="external">API</a>非常丰富(复杂)。Server的部署和分发也提供相应的<a href="http://www.wowza.com/products/streaming-engine/deployment-options" target="_blank" rel="external">支持</a>。</p>
+<p>另外WOWZA还提供了<a href="http://www.wowza.com/products/streaming-engine/deployment-options" target="_blank" rel="external">GeoIP</a>的数据库。</p>
+<p><strong><em>2. Kaltura</em></strong></p>
+<p><a href="http://knowledge.kaltura.com/live-streaming-using-kaltura-live-streaming-hds-hls-dash" target="_blank" rel="external">Kaltura</a>的功能类似，也有服务器和cloud产品，从介绍上来看也非常完善。Kaltura是一套<a href="https://github.com/kaltura" target="_blank" rel="external">开源</a>的解决方案，也提供<a href="http://corp.kaltura.com/" target="_blank" rel="external">商业服务</a>。</p>
+<p><strong><em>3. UStream</em></strong></p>
+<p><a href="http://www.ustream.tv/" target="_blank" rel="external">Ustream</a>仅仅提供Cloud服务，没有Server，但是却提供了Client的library，包括Android/iOS/Roku。</p>
+<p><strong><em>4. Youtube</em></strong></p>
+<p>Youtube也仅仅提供Cloud服务，没有Server。</p>
+<p><strong><em>5. JWPlayer</em></strong></p>
+<p>原先只是flash播放器，现在也在提供cloud服务。</p>
+<p>##产品架构选型</p>
+<p>###需求分析</p>
+<p>能动态的根据用户相关的数据来实时生成广告版。现有的支持音视频编辑的软件可以mix多路视频，但这些都是在客户端发布视频之前做的，而用户相关的数据只有服务器端才有，所以需要在服务器端做mix。</p>
+<p>##功能</p>
+<p><strong>Dynamic Streaming</strong></p>
+<p><strong>HTTP scalability</strong></p>
+<p><strong>HTTP caching</strong></p>
+<p><strong>Trickplay</strong></p>
+<p><strong>Alternate video/audio track</strong></p>
+<p><strong>Text streams</strong></p>
+<p><strong>Rough cut editing</strong></p>
+<p><strong>Ad insertion</strong></p>
+<p><strong>Network DVR(Digital Video Recorder)</strong></p>
+<p><strong>Stream recording</strong></p>
+<p><strong>DRM(Digital Rights Management)</strong></p>
+<p>##客户端</p>
+<p><strong>JW Player</strong></p>
+<p><strong>Flowplayer</strong></p>
+<p>##协议</p>
+<p><strong>UDP</strong></p>
+<p><strong>TCP</strong></p>
+<p><strong>RTSP/RTP</strong></p>
+<p><strong>HTTP</strong></p>
+<p><strong>Apple HLS</strong>: HTTP Live Streaming</p>
+<p><strong>Adobe HDS</strong>: HTTP Dynamic Streaming</p>
+<p><strong>Microsoft Smooth Streaming</strong></p>
+<p><strong>MPEG-TS</strong>: MPEG-2 Transport Streams，多用于IPTV</p>
+<p><strong>MPEG-DASH Streaming</strong>: Moving Picture Experts Group Dynamic Adaptive Streaming over HTTP</p>
+<p><strong>MPD</strong>: Media Presenation Descriptino</p>
+<p>##名词解析</p>
+<p><strong>ABR</strong>: Adaptive bitrate streaming通过监测下行带宽的变化或用户的操作来自动适应带宽变化或屏幕大小变化。为了保证平滑的切换不同质量的视频，ABR对encoder是有一定要求的，需要编码的时候不同质量的关键帧能同步。</p>
+<p><strong>SMIL</strong>: Synchronized Multimedia Integration Language用来描述视频源可用的bitrate和size等配置，client可以根据这些配置来选择不同质量的视频。Mobile客户端和Desktop客户端一般会有不同的配置，不同的平台也有特定的要求（iOS bitrate不超过64 kbps)。</p>
+<p><strong>DASH</strong>: Dynamic Adaptive Streaming over HTTP</p>
+<p><strong>HbbTV</strong>: Hybrid Broadcast Broadband TV</p>
+<p><strong>Container</strong>: 容器就是把编码器生成的多媒体内容（视频，音频，字幕，章节信息等）混合封装在一起的标准。容器使得不同多媒体内容同步播放变得很简单，而容器的另一个作用就是为多媒体内容提供索引，也就是说如果没有容器存在的话一部影片你只能从一开始看到最后，不能拖动进度条（当然这种情况下有的播放器会话比较长的时间临时创建索引），而且如果你不自己去手动另外载入音频就没有声音。</p>
+<p>##参考</p>
+<ol>
+<li><a href="http://info.wowza.com/abr-white-paper" target="_blank" rel="external">Adaptive Bitrate Streaming with Wowza Streaming Engine</a> </li>
+<li><a href="http://info.wowza.com/mediacache-white-paper" target="_blank" rel="external">Media Cache White Paper</a></li>
+<li><a href="http://info.wowza.com/tv-anywhere-white-paper" target="_blank" rel="external">TV Anywhere White Paper</a></li>
+<li><a href="http://www.dacast.com/white-papers/smb-market-for-paid-video-streaming-services/" target="_blank" rel="external">SMB Market For Paid Video Streaming Services</a></li>
+<li><a href="http://www.slideshare.net/wiliwe/streaming-media-server-setup-manual" target="_blank" rel="external">streaming media server setup manual</a></li>
+</ol>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Live-Streaming/">Live Streaming</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/06/DASH标准/"  data-tooltip="DASH标准">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/05/31/吉他和弦基础理论/" data-tooltip="吉他和弦基础理论">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jiantao Fu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/06/DASH标准/"  data-tooltip="DASH标准">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/05/31/吉他和弦基础理论/" data-tooltip="吉他和弦基础理论">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
+        
+            <h4 id="about-card-name">Jiantao Fu</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                Software Engineer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</html>

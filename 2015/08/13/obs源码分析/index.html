@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hexo">
+    <title>obs源码分析 - Hexo</title>
+    <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Hexo">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://jiantaofu.github.io">Hexo</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+</nav>
+
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">obs源码分析</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Thu Aug 13 2015 21:32:20 GMT-0700">
+        Aug 13, 2015
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>#obs源码分析</p>
+<p>##编译源码</p>
+<p>分析源码的第一步是编译源码，这样才能边调试边学习。obs studio支持cmake，在mac osx下可以生成Xcode的工程文件，这样方便调试。obs依赖的库有ffmpeg, qt5等，用brew可以很方便的安装。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>qt5</span><br></pre></td></tr></table></figure>
+<p>需要注意的是用cmake生成工程文件前需要设置环境变量:</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export CMAKE_PREFIX_PATH=/usr/<span class="keyword">local</span>/<span class="built_in">opt</span>/qt5/</span><br></pre></td></tr></table></figure>
+<p>生成好了工程文件后，设置一下工作目录，否则会找不到locale文件报错。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(SRCROOT)<span class="meta-keyword">/macbuild/</span>rundir/Debug<span class="meta-keyword">/bin/</span></span><br></pre></td></tr></table></figure>
+<p>##线程分析</p>
+<p>接下来可以把程序跑起来了，可以调试运行，让程序暂停，然后分析一下程序有哪些主要的线程。</p>
+<p>程序起来开始streaming前可以看到有三个线程:</p>
+<ul>
+<li>“audio-io: audio thread”: 音频采集</li>
+<li>“video-io: video thread”: 视频采集</li>
+<li>“libobs: graphics thread”: 视频预览</li>
+</ul>
+<p>##基本数据结构分析</p>
+<p>###视频部分</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> video_data &#123;</span><br><span class="line">        <span class="keyword">uint8_t</span>           *data[MAX_AV_PLANES];</span><br><span class="line">        <span class="keyword">uint32_t</span>          linesize[MAX_AV_PLANES];</span><br><span class="line">        <span class="keyword">uint64_t</span>          timestamp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> video_input &#123;</span><br><span class="line">        <span class="keyword">struct</span> video_scale_info   conversion;</span><br><span class="line">        <span class="keyword">video_scaler_t</span>            *scaler;</span><br><span class="line">        <span class="keyword">struct</span> video_frame        frame[MAX_CONVERT_BUFFERS];</span><br><span class="line">        <span class="keyword">int</span>                       cur_frame;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">void</span> (*callback)(<span class="keyword">void</span> *param, <span class="keyword">struct</span> video_data *frame);</span><br><span class="line">        <span class="keyword">void</span> *param;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> video_output &#123;</span><br><span class="line">        <span class="keyword">struct</span> video_output_info   info;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">pthread_t</span>                  thread;</span><br><span class="line">        <span class="keyword">pthread_mutex_t</span>            data_mutex;</span><br><span class="line">        <span class="keyword">bool</span>                       stop;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">os_sem_t</span>                   *update_semaphore;</span><br><span class="line">        <span class="keyword">uint64_t</span>                   frame_time;</span><br><span class="line">        <span class="keyword">uint32_t</span>                   skipped_frames;</span><br><span class="line">        <span class="keyword">uint32_t</span>                   total_frames;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">bool</span>                       initialized;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">pthread_mutex_t</span>            input_mutex;</span><br><span class="line">        DARRAY(<span class="keyword">struct</span> video_input) inputs;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">size_t</span>                     available_frames;</span><br><span class="line">        <span class="keyword">size_t</span>                     first_added;</span><br><span class="line">        <span class="keyword">size_t</span>                     last_added;</span><br><span class="line">        <span class="keyword">struct</span> cached_frame_info   cache[MAX_CACHE_SIZE];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> video_output <span class="keyword">video_t</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">struct obs_source &#123;</span><br><span class="line">	struct obs_context_data         <span class="built_in">context</span><span class="comment">;</span></span><br><span class="line">	struct obs_source_info          info<span class="comment">;</span></span><br><span class="line">	struct obs_weak_source          *control<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* general exposed flags that can be set for the source */</span></span><br><span class="line">	uint32_t                        flags<span class="comment">;</span></span><br><span class="line">	uint32_t                        default_flags<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* indicates ownership of the info.id buffer */</span></span><br><span class="line">	<span class="keyword">bool </span>                           owns_info_id<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* signals to call the source update in the video thread */</span></span><br><span class="line">	<span class="keyword">bool </span>                           defer_update<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* ensures show/hide are only called once */</span></span><br><span class="line">	volatile long                   <span class="keyword">show_refs;</span><br><span class="line"></span></span><br><span class="line">	<span class="comment">/* ensures activate/deactivate are only called once */</span></span><br><span class="line">	volatile long                   activate_refs<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* used to indicate that the source has been removed and all</span><br><span class="line">	 * references to it should be released (not exactly how I would prefer</span><br><span class="line">	 * to handle things but it's the best option) */</span></span><br><span class="line">	<span class="keyword">bool </span>                           removed<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool </span>                           active<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           <span class="keyword">showing;</span><br><span class="line"></span></span><br><span class="line">	<span class="comment">/* used to temporarily disable sources if needed */</span></span><br><span class="line">	<span class="keyword">bool </span>                           enabled<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* timing (if video is present, is based upon video) */</span></span><br><span class="line">	volatile <span class="keyword">bool </span>                  timing_set<span class="comment">;</span></span><br><span class="line">	volatile uint64_t               timing_adjust<span class="comment">;</span></span><br><span class="line">	uint64_t                        next_audio_ts_min<span class="comment">;</span></span><br><span class="line">	uint64_t                        last_frame_ts<span class="comment">;</span></span><br><span class="line">	uint64_t                        last_sys_timestamp<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           async_rendered<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* audio */</span></span><br><span class="line">	<span class="keyword">bool </span>                           audio_failed<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           muted<span class="comment">;</span></span><br><span class="line">	struct resample_info            sample_info<span class="comment">;</span></span><br><span class="line">	audio_resampler_t               *resampler<span class="comment">;</span></span><br><span class="line">	audio_line_t                    *audio_line<span class="comment">;</span></span><br><span class="line">	pthread_mutex_t                 audio_mutex<span class="comment">;</span></span><br><span class="line">	struct obs_audio_data           audio_data<span class="comment">;</span></span><br><span class="line">	size_t                          audio_storage_size<span class="comment">;</span></span><br><span class="line">	float                           <span class="keyword">base_volume;</span><br><span class="line"></span>	float                           user_volume<span class="comment">;</span></span><br><span class="line">	float                           present_volume<span class="comment">;</span></span><br><span class="line">	int64_t                         <span class="keyword">sync_offset;</span><br><span class="line"></span></span><br><span class="line">	<span class="comment">/* async video data */</span></span><br><span class="line">	gs_texture_t                    *async_texture<span class="comment">;</span></span><br><span class="line">	gs_texrender_t                  *async_convert_texrender<span class="comment">;</span></span><br><span class="line">	struct obs_source_frame         *cur_async_frame<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           async_gpu_conversion<span class="comment">;</span></span><br><span class="line">	enum video_format               async_format<span class="comment">;</span></span><br><span class="line">	enum video_format               async_cache_format<span class="comment">;</span></span><br><span class="line">	enum gs_color_format            async_texture_format<span class="comment">;</span></span><br><span class="line">	float                           async_color_matrix[<span class="number">16</span>]<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           async_full_range<span class="comment">;</span></span><br><span class="line">	float                           async_color_range_min[<span class="number">3</span>]<span class="comment">;</span></span><br><span class="line">	float                           async_color_range_max[<span class="number">3</span>]<span class="comment">;</span></span><br><span class="line">	int                             async_plane_offset[<span class="number">2</span>]<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           async_flip<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           async_active<span class="comment">;</span></span><br><span class="line">	DARRAY(struct async_frame)      async_cache<span class="comment">;</span></span><br><span class="line">	DARRAY(struct obs_source_frame*)async_frames<span class="comment">;</span></span><br><span class="line">	pthread_mutex_t                 async_mutex<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_width<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_height<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_cache_width<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_cache_height<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_convert_width<span class="comment">;</span></span><br><span class="line">	uint32_t                        async_convert_height<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* filters */</span></span><br><span class="line">	struct obs_source               *filter_parent<span class="comment">;</span></span><br><span class="line">	struct obs_source               *filter_target<span class="comment">;</span></span><br><span class="line">	DARRAY(struct obs_source*)      filters<span class="comment">;</span></span><br><span class="line">	pthread_mutex_t                 filter_mutex<span class="comment">;</span></span><br><span class="line">	gs_texrender_t                  *filter_texrender<span class="comment">;</span></span><br><span class="line">	enum obs_allow_direct_render    allow_direct<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           rendering_filter<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* sources specific hotkeys */</span></span><br><span class="line">	obs_hotkey_pair_id              mute_unmute_key<span class="comment">;</span></span><br><span class="line">	obs_hotkey_id                   push_to_mute_key<span class="comment">;</span></span><br><span class="line">	obs_hotkey_id                   push_to_talk_key<span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           push_to_mute_enabled : <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           push_to_mute_pressed : <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           push_to_talk_enabled : <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">bool </span>                           push_to_talk_pressed : <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	uint64_t                        push_to_mute_delay<span class="comment">;</span></span><br><span class="line">	uint64_t                        push_to_mute_stop_time<span class="comment">;</span></span><br><span class="line">	uint64_t                        push_to_talk_delay<span class="comment">;</span></span><br><span class="line">	uint64_t                        push_to_talk_stop_time<span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">EXPORT <span class="keyword">bool</span> <span class="title">video_output_connect</span>(<span class="params">video_t *video,</span><br><span class="line">                <span class="keyword">const</span> <span class="keyword">struct</span> video_scale_info *conversion,</span><br><span class="line">                <span class="keyword">void</span> (*callback</span>)(<span class="params"><span class="keyword">void</span> *param, <span class="keyword">struct</span> video_data *frame</span>),</span><br><span class="line">                <span class="keyword">void</span> *param)</span>;</span><br></pre></td></tr></table></figure>
+<p>在obs-encoder.c中:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">void obs_encoder_start(obs_encoder_t *encoder,</span><br><span class="line">		void (*new_packet)(void *param, struct encoder_packet *packet),</span><br><span class="line">		void *param)</span><br><span class="line">&#123;</span><br><span class="line">	struct encoder_callback cb = &#123;false, new_packet, param&#125;;</span><br><span class="line">	bool first   = false;</span><br><span class="line"></span><br><span class="line">	if (!encoder || !new_packet || !encoder-&gt;context.data) return;</span><br><span class="line"></span><br><span class="line">	pthread_mutex_lock(&amp;encoder-&gt;callbacks_mutex);</span><br><span class="line"></span><br><span class="line">	first = (encoder-&gt;callbacks.num == 0);</span><br><span class="line"></span><br><span class="line">	size_t idx = get_callback_idx(encoder, new_packet, param);</span><br><span class="line">	if (idx == DARRAY_INVALID)</span><br><span class="line">		da_push_back(encoder-&gt;callbacks, &amp;cb);</span><br><span class="line"></span><br><span class="line">	pthread_mutex_unlock(&amp;encoder-&gt;callbacks_mutex);</span><br><span class="line"></span><br><span class="line">	if (first) &#123;</span><br><span class="line">		encoder-&gt;cur_pts = 0;</span><br><span class="line">		add_connection(encoder);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void add_connection(struct obs_encoder *encoder)</span><br><span class="line">&#123;</span><br><span class="line">        if (encoder-&gt;info.type == OBS_ENCODER_AUDIO) &#123;</span><br><span class="line">                struct audio_convert_info audio_info = &#123;0&#125;;</span><br><span class="line">                get_audio_info(encoder, &amp;audio_info);</span><br><span class="line"></span><br><span class="line">                audio_output_connect(encoder-&gt;media, encoder-&gt;mixer_idx,</span><br><span class="line">                                &amp;audio_info, receive_audio, encoder);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">                struct video_scale_info info = &#123;0&#125;;</span><br><span class="line">                get_video_info(encoder, &amp;info);</span><br><span class="line"></span><br><span class="line">                video_output_connect(encoder-&gt;media, &amp;info, receive_video,</span><br><span class="line">                        encoder);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        encoder-&gt;active = true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###基本流程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">obs_output_begin_data_capture</span><span class="params">(obs_output_t *output, uint32_t flags)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> encoded, has_video, has_audio, has_service;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!output) return <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span> (output-&gt;active) return <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	output-&gt;total_frames   = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	convert_flags(output, flags, &amp;encoded, &amp;has_video, &amp;has_audio,</span><br><span class="line">			&amp;has_service);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!can_begin_data_capture(output, encoded, has_video, has_audio,</span><br><span class="line">				has_service))</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	hook_data_capture(output, encoded, has_video, has_audio);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (has_service)</span><br><span class="line">		obs_service_activate(output-&gt;service);</span><br><span class="line"></span><br><span class="line">	output-&gt;active = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (output-&gt;reconnecting) &#123;</span><br><span class="line">		signal_reconnect_success(output);</span><br><span class="line">		output-&gt;reconnecting = <span class="literal">false</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		signal_start(output);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hook_data_capture</span><span class="params">(<span class="keyword">struct</span> obs_output *output, <span class="keyword">bool</span> encoded,</span><br><span class="line">		<span class="keyword">bool</span> has_video, <span class="keyword">bool</span> has_audio)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">encoded_callback_t</span> encoded_callback;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (encoded) &#123;</span><br><span class="line">		output-&gt;received_audio   = <span class="literal">false</span>;</span><br><span class="line">		output-&gt;received_video   = <span class="literal">false</span>;</span><br><span class="line">		output-&gt;highest_audio_ts = <span class="number">0</span>;</span><br><span class="line">		output-&gt;highest_video_ts = <span class="number">0</span>;</span><br><span class="line">		output-&gt;video_offset     = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; MAX_AUDIO_MIXES; i++)</span><br><span class="line">			output-&gt;audio_offsets[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		free_packets(output);</span><br><span class="line"></span><br><span class="line">		encoded_callback = (has_video &amp;&amp; has_audio) ?</span><br><span class="line">			interleave_packets : default_encoded_callback;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (has_video)</span><br><span class="line">			obs_encoder_start(output-&gt;video_encoder,</span><br><span class="line">					encoded_callback, output);</span><br><span class="line">		<span class="keyword">if</span> (has_audio)</span><br><span class="line">			start_audio_encoders(output, encoded_callback);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (has_video)</span><br><span class="line">			video_output_connect(output-&gt;video,</span><br><span class="line">					get_video_conversion(output),</span><br><span class="line">					default_raw_video_callback, output);</span><br><span class="line">		<span class="keyword">if</span> (has_audio)</span><br><span class="line">			audio_output_connect(output-&gt;audio, output-&gt;mixer_idx,</span><br><span class="line">					get_audio_conversion(output),</span><br><span class="line">					default_raw_audio_callback, output);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">do_encode</span><span class="params">(<span class="keyword">struct</span> obs_encoder *encoder,</span><br><span class="line">		<span class="keyword">struct</span> encoder_frame *frame)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> encoder_packet pkt = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">bool</span> received = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">bool</span> success;</span><br><span class="line"></span><br><span class="line">	pkt.timebase_num = encoder-&gt;timebase_num;</span><br><span class="line">	pkt.timebase_den = encoder-&gt;timebase_den;</span><br><span class="line">	pkt.encoder = encoder;</span><br><span class="line"></span><br><span class="line">	success = encoder-&gt;info.encode(encoder-&gt;context.data, frame, &amp;pkt,</span><br><span class="line">			&amp;received);</span><br><span class="line">	<span class="keyword">if</span> (!success) &#123;</span><br><span class="line">		full_stop(encoder);</span><br><span class="line">		blog(LOG_ERROR, <span class="string">"Error encoding with encoder '%s'"</span>,</span><br><span class="line">				encoder-&gt;context.name);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (received) &#123;</span><br><span class="line">		<span class="comment">/* we use system time here to ensure sync with other encoders,</span><br><span class="line">		 * you do not want to use relative timestamps here */</span></span><br><span class="line">		pkt.dts_usec = encoder-&gt;start_ts / <span class="number">1000</span> + packet_dts_usec(&amp;pkt);</span><br><span class="line"></span><br><span class="line">		pthread_mutex_lock(&amp;encoder-&gt;callbacks_mutex);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; encoder-&gt;callbacks.num; i++) &#123;</span><br><span class="line">			<span class="keyword">struct</span> encoder_callback *cb;</span><br><span class="line">			cb = encoder-&gt;callbacks.<span class="built_in">array</span>+i;</span><br><span class="line">			send_packet(encoder, cb, &amp;pkt);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		pthread_mutex_unlock(&amp;encoder-&gt;callbacks_mutex);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最重要的全局变量:</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">struct obs_core *obs = NULL;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* internal initialization */</span></span><br><span class="line">bool obs_source_init(struct obs_source *source,</span><br><span class="line">		const struct obs_source_info *info)</span><br><span class="line">&#123;</span><br><span class="line">	pthread_mutexattr_t attr;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>user_volume = <span class="number">1.0</span>f;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>present_volume = <span class="number">1.0</span>f;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>base_volume = <span class="number">0.0</span>f;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>sync_offset = <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="title">pthread_mutex_init_value</span>(&amp;source-&gt;</span>filter_mutex);</span><br><span class="line">	<span class="function"><span class="title">pthread_mutex_init_value</span>(&amp;source-&gt;</span>async_mutex);</span><br><span class="line">	<span class="function"><span class="title">pthread_mutex_init_value</span>(&amp;source-&gt;</span>audio_mutex);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (pthread_mutexattr_init(&amp;attr) != <span class="number">0</span>)</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span> (pthread_mutexattr_settype(&amp;attr, PTHREAD_MUTEX_RECURSIVE) != <span class="number">0</span>)</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	<span class="function"><span class="title">if</span> (pthread_mutex_init(&amp;source-&gt;</span>filter_mutex, &amp;attr) != <span class="number">0</span>)</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	<span class="function"><span class="title">if</span> (pthread_mutex_init(&amp;source-&gt;</span>audio_mutex, NULL) != <span class="number">0</span>)</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	<span class="function"><span class="title">if</span> (pthread_mutex_init(&amp;source-&gt;</span>async_mutex, NULL) != <span class="number">0</span>)</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">if</span> (info &amp;&amp; info-&gt;</span>output_flags &amp; OBS_SOURCE_AUDIO) &#123;</span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span><span class="function"><span class="title">audio_line</span> = audio_output_create_line(obs-&gt;</span>audio.audio,</span><br><span class="line">				<span class="function"><span class="title">source</span>-&gt;</span>context.<span class="keyword">name</span>, <span class="number">0</span>xF);</span><br><span class="line">		<span class="function"><span class="title">if</span> (!source-&gt;</span>audio_line) &#123;</span><br><span class="line">			blog(LOG_ERROR, <span class="string">"Failed to create audio line for "</span></span><br><span class="line">			                <span class="string">"source '%s'"</span>, <span class="function"><span class="title">source</span>-&gt;</span>context.<span class="keyword">name</span>);</span><br><span class="line">			return <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>control = bzalloc(sizeof(obs_weak_source_t));</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span><span class="function"><span class="title">control</span>-&gt;</span>source = source;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">obs_context_data_insert</span>(&amp;source-&gt;</span>context,</span><br><span class="line">			&amp;<span class="function"><span class="title">obs</span>-&gt;</span><span class="keyword">data</span>.sources_mutex,</span><br><span class="line">			&amp;<span class="function"><span class="title">obs</span>-&gt;</span><span class="keyword">data</span>.first_source);</span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obs_source_t *obs_source_create(enum obs_source_type type, const char *id,</span><br><span class="line">		const char *<span class="keyword">name</span>, obs_data_t *settings, obs_data_t *hotkey_data)</span><br><span class="line">&#123;</span><br><span class="line">	struct obs_source *source = bzalloc(sizeof(struct obs_source));</span><br><span class="line"></span><br><span class="line">	const struct obs_source_info *info = get_source_info(type, id);</span><br><span class="line">	<span class="keyword">if</span> (!info) &#123;</span><br><span class="line">		blog(LOG_ERROR, <span class="string">"Source ID '%s' not found"</span>, id);</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span>info.id      = bstrdup(id);</span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span>info.type    = type;</span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span>owns_info_id = <span class="literal">true</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span>info = *info;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>mute_unmute_key  = OBS_INVALID_HOTKEY_PAIR_ID;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>push_to_mute_key = OBS_INVALID_HOTKEY_ID;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>push_to_talk_key = OBS_INVALID_HOTKEY_ID;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!obs_source_init_context(source, settings, <span class="keyword">name</span>, hotkey_data))</span><br><span class="line">		goto fail;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">if</span> (info &amp;&amp; info-&gt;</span>get_defaults)</span><br><span class="line">		<span class="function"><span class="title">info</span>-&gt;</span><span class="function"><span class="title">get_defaults</span>(source-&gt;</span>context.settings);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!obs_source_init(source, info))</span><br><span class="line">		goto fail;</span><br><span class="line"></span><br><span class="line">	obs_source_init_audio_hotkeys(source);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* allow the source to be created even if creation fails so that the</span><br><span class="line">	 * user's data doesn't become lost */</span></span><br><span class="line">	<span class="keyword">if</span> (info)</span><br><span class="line">		<span class="function"><span class="title">source</span>-&gt;</span><span class="function"><span class="title">context</span>.<span class="keyword">data</span> = info-&gt;</span><span class="function"><span class="title">create</span>(source-&gt;</span>context.settings,</span><br><span class="line">				source);</span><br><span class="line">	<span class="function"><span class="title">if</span> (!source-&gt;</span>context.<span class="keyword">data</span>)</span><br><span class="line">		blog(LOG_ERROR, <span class="string">"Failed to create source '%s'!"</span>, <span class="keyword">name</span>);</span><br><span class="line"></span><br><span class="line">	blog(LOG_INFO, <span class="string">"source '%s' (%s) created"</span>, <span class="keyword">name</span>, id);</span><br><span class="line">	obs_source_dosignal(source, <span class="string">"source_create"</span>, NULL);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span><span class="function"><span class="title">flags</span> = source-&gt;</span>default_flags;</span><br><span class="line">	<span class="function"><span class="title">source</span>-&gt;</span>enabled = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">if</span> (info &amp;&amp; info-&gt;</span>type == OBS_SOURCE_TYPE_TRANSITION)</span><br><span class="line">		<span class="function"><span class="title">os_atomic_inc_long</span>(&amp;obs-&gt;</span><span class="keyword">data</span>.active_transitions);</span><br><span class="line">	return source;</span><br><span class="line"></span><br><span class="line">fail:</span><br><span class="line">	blog(LOG_ERROR, <span class="string">"obs_source_create failed"</span>);</span><br><span class="line">	obs_source_destroy(source);</span><br><span class="line">	return NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> uint64_t <span class="title">tick_sources</span><span class="params">(uint64_t cur_time, uint64_t last_time)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> obs_core_data *data = &amp;obs-&gt;data;</span><br><span class="line">	<span class="keyword">struct</span> obs_view      *view = &amp;data-&gt;main_view;</span><br><span class="line">	<span class="keyword">struct</span> obs_source    *source;</span><br><span class="line">	<span class="keyword">uint64_t</span>             delta_time;</span><br><span class="line">	<span class="keyword">float</span>                seconds;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!last_time)</span><br><span class="line">		last_time = cur_time -</span><br><span class="line">			video_output_get_frame_time(obs-&gt;video.video);</span><br><span class="line"></span><br><span class="line">	delta_time = cur_time - last_time;</span><br><span class="line">	seconds = (float)((double)delta_time / <span class="number">1000000000.0</span>);</span><br><span class="line"></span><br><span class="line">	pthread_mutex_lock(&amp;data-&gt;sources_mutex);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* call the tick function of each source */</span></span><br><span class="line">	source = data-&gt;first_source;</span><br><span class="line">	<span class="keyword">while</span> (source) &#123;</span><br><span class="line">		obs_source_video_tick(source, seconds);</span><br><span class="line">		source = (struct obs_source*)source-&gt;context.next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* calculate source volumes */</span></span><br><span class="line">	pthread_mutex_lock(&amp;view-&gt;channels_mutex);</span><br><span class="line"></span><br><span class="line">	source = data-&gt;first_source;</span><br><span class="line">	<span class="keyword">while</span> (source) &#123;</span><br><span class="line">		calculate_base_volume(data, view, source);</span><br><span class="line">		source = (struct obs_source*)source-&gt;context.next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pthread_mutex_unlock(&amp;view-&gt;channels_mutex);</span><br><span class="line"></span><br><span class="line">	pthread_mutex_unlock(&amp;data-&gt;sources_mutex);</span><br><span class="line"></span><br><span class="line">	return cur_time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###Video数据流</p>
+<p>rtmp_stream_start -&gt; connect_thread -&gt; try_connect -&gt; init_send -&gt; obs_output_begin_data_capture -&gt; hook_data_capture -&gt; obs_encoder_start(interleave_packets) -&gt; add_connection -&gt; video_output_connect(receive_video)</p>
+<p>obs_source_create -&gt; av_capture_info.create[av_capture_create]</p>
+<p>captureOutput didOutputSampleBuffer fromConnection -&gt; obs_source_output_video -&gt; cache_video</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">obs_init_video</span> -&gt;</span> <span class="function"><span class="title">pthread_create</span>(obs_video_thread) -&gt;</span> <span class="function"><span class="title">tick_sources</span> -&gt;</span> <span class="function"><span class="title">obs_source_video_tick</span> -&gt;</span> get_closest_frame</span><br><span class="line">                                                   -&gt; render_displays</span><br><span class="line">                                                   -&gt; <span class="function"><span class="title">output_frame</span> -&gt;</span> output_video_data</span><br><span class="line">                                                   </span><br><span class="line"><span class="function"><span class="title">video_thread</span> -&gt;</span> <span class="function"><span class="title">video_output_cur_frame</span> -&gt;</span> <span class="function"><span class="title">input</span>-&gt;</span><span class="function"><span class="title">callback</span> -&gt;</span> <span class="function"><span class="title">receive_video</span> -&gt;</span> <span class="function"><span class="title">do_encode</span> -&gt;</span> <span class="function"><span class="title">encoder</span>-&gt;</span><span class="function"><span class="title">info</span>.encode -&gt;</span> <span class="function"><span class="title">send_packet</span> -&gt;</span> interleave_packets</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">obs_init_video</span> -&gt;</span> <span class="function"><span class="title">video_output_open</span> -&gt;</span> pthread_create(video_thread)</span><br></pre></td></tr></table></figure>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/08/19/San-Jose的清晨/"  data-tooltip="San Jose的清晨">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/12/obs视频采集源码分析/" data-tooltip="obs视频采集源码分析">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jiantao Fu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/08/19/San-Jose的清晨/"  data-tooltip="San Jose的清晨">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/12/obs视频采集源码分析/" data-tooltip="obs视频采集源码分析">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/08/13/obs源码分析/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
+        
+            <h4 id="about-card-name">Jiantao Fu</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                Software Engineer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</html>

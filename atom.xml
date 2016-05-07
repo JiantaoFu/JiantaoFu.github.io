@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://jiantaofu.github.io/"/>
+  <updated>2016-05-07T05:34:27.000Z</updated>
+  <id>http://jiantaofu.github.io/</id>
+  
+  <author>
+    <name>Jiantao Fu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>rtmp协议分析</title>
+    <link href="http://jiantaofu.github.io/2016/05/06/rtmp%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/"/>
+    <id>http://jiantaofu.github.io/2016/05/06/rtmp协议分析/</id>
+    <published>2016-05-07T05:34:27.000Z</published>
+    <updated>2016-05-07T05:34:27.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>San Jose的清晨</title>
+    <link href="http://jiantaofu.github.io/2015/08/19/San-Jose%E7%9A%84%E6%B8%85%E6%99%A8/"/>
+    <id>http://jiantaofu.github.io/2015/08/19/San-Jose的清晨/</id>
+    <published>2015-08-19T13:13:04.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;做梦了，梦到以前的同学卖1.6一张的光盘都成了百万富翁。实在是不满意当前自己的生活状态，有种被生活强奸的感觉，很被动，一直在被push着往前走，时间的安排也不合理，或者很多时候可以说没有安排，过于太随心随性，缺乏目标，很多事情想起来就做做，更有很多事情想到了就一直没做。这种状态下迎接小七喜的降临，未来的生活一团乱麻实在是不可想象！&lt;/p&gt;
+&lt;p&gt;记得上学时，每天的生活有非常有规律，有固定的锻炼时间，每天晚上会看看书，早上6点左右起床，晚上11点睡觉。现在每天的日子过的太随性，但最终发现不随心，上学时有部分因素是被安排，但现在，作为一个成年人，需要对自己的生命负责（本来想说生活，但生命是会逝去的，会更有紧迫感，剩下还有多少周？？），工作再忙，也不能成为借口，做事情要提高效率和效用，一味以追求质量不能作为浪费时间和混乱的优先级的借口。&lt;/p&gt;
+&lt;p&gt;好习惯是需要培养的，坏习惯是很容易滋生的。作为培养好习惯的开始，从坚持每天早上锻炼开始，好习惯需要一点意志力，锻炼是我喜欢的方式，作为一个好的开始，已经坚持了两天了，应该还是可以安排时间来学吉他，练英语，将bbbforum重新上线，更新app，做wifi广告系统，追讨保费，办绿卡…&lt;/p&gt;
+&lt;p&gt;发自内心的快乐在于对自己的掌控，远胜过于睡懒觉和看花边新闻。掌控了自己，就掌控了生活。和混混耗耗说再见！跑步去了！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;做梦了，梦到以前的同学卖1.6一张的光盘都成了百万富翁。实在是不满意当前自己的生活状态，有种被生活强奸的感觉，很被动，一直在被push着往前走，时间的安排也不合理，或者很多时候可以说没有安排，过于太随心随性，缺乏目标，很多事情想起来就做做，更有很多事情想到了就一直没做。这种
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>obs源码分析</title>
+    <link href="http://jiantaofu.github.io/2015/08/13/obs%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <id>http://jiantaofu.github.io/2015/08/13/obs源码分析/</id>
+    <published>2015-08-14T04:32:20.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#obs源码分析&lt;/p&gt;
+&lt;p&gt;##编译源码&lt;/p&gt;
+&lt;p&gt;分析源码的第一步是编译源码，这样才能边调试边学习。obs studio支持cmake，在mac osx下可以生成Xcode的工程文件，这样方便调试。obs依赖的库有ffmpeg, qt5等，用brew可以很方便的安装。&lt;/p&gt;
+&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;brew &lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;install &lt;/span&gt;qt5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;需要注意的是用cmake生成工程文件前需要设置环境变量:&lt;/p&gt;
+&lt;figure class=&quot;highlight autoit&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export CMAKE_PREFIX_PATH=/usr/&lt;span class=&quot;keyword&quot;&gt;local&lt;/span&gt;/&lt;span class=&quot;built_in&quot;&gt;opt&lt;/span&gt;/qt5/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;生成好了工程文件后，设置一下工作目录，否则会找不到locale文件报错。&lt;/p&gt;
+&lt;figure class=&quot;highlight dts&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$(SRCROOT)&lt;span class=&quot;meta-keyword&quot;&gt;/macbuild/&lt;/span&gt;rundir/Debug&lt;span class=&quot;meta-keyword&quot;&gt;/bin/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;##线程分析&lt;/p&gt;
+&lt;p&gt;接下来可以把程序跑起来了，可以调试运行，让程序暂停，然后分析一下程序有哪些主要的线程。&lt;/p&gt;
+&lt;p&gt;程序起来开始streaming前可以看到有三个线程:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“audio-io: audio thread”: 音频采集&lt;/li&gt;
+&lt;li&gt;“video-io: video thread”: 视频采集&lt;/li&gt;
+&lt;li&gt;“libobs: graphics thread”: 视频预览&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##基本数据结构分析&lt;/p&gt;
+&lt;p&gt;###视频部分&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_data &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint8_t&lt;/span&gt;           *data[MAX_AV_PLANES];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint32_t&lt;/span&gt;          linesize[MAX_AV_PLANES];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint64_t&lt;/span&gt;          timestamp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_input &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_scale_info   conversion;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;video_scaler_t&lt;/span&gt;            *scaler;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_frame        frame[MAX_CONVERT_BUFFERS];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;                       cur_frame;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; (*callback)(&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; *param, &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_data *frame);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; *param;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_output &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_output_info   info;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;pthread_t&lt;/span&gt;                  thread;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;pthread_mutex_t&lt;/span&gt;            data_mutex;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt;                       stop;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;os_sem_t&lt;/span&gt;                   *update_semaphore;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint64_t&lt;/span&gt;                   frame_time;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint32_t&lt;/span&gt;                   skipped_frames;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;uint32_t&lt;/span&gt;                   total_frames;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt;                       initialized;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;pthread_mutex_t&lt;/span&gt;            input_mutex;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        DARRAY(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_input) inputs;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;size_t&lt;/span&gt;                     available_frames;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;size_t&lt;/span&gt;                     first_added;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;size_t&lt;/span&gt;                     last_added;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; cached_frame_info   cache[MAX_CACHE_SIZE];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_output &lt;span class=&quot;keyword&quot;&gt;video_t&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;100&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;101&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct obs_source &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_context_data         &lt;span class=&quot;built_in&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_source_info          info&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_weak_source          *control&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* general exposed flags that can be set for the source */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        flags&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        default_flags&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* indicates ownership of the info.id buffer */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           owns_info_id&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* signals to call the source update in the video thread */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           defer_update&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* ensures show/hide are only called once */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	volatile long                   &lt;span class=&quot;keyword&quot;&gt;show_refs;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* ensures activate/deactivate are only called once */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	volatile long                   activate_refs&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* used to indicate that the source has been removed and all&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	 * references to it should be released (not exactly how I would prefer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	 * to handle things but it&#39;s the best option) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           removed&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           active&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           &lt;span class=&quot;keyword&quot;&gt;showing;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* used to temporarily disable sources if needed */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           enabled&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* timing (if video is present, is based upon video) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	volatile &lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                  timing_set&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	volatile uint64_t               timing_adjust&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        next_audio_ts_min&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        last_frame_ts&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        last_sys_timestamp&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           async_rendered&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* audio */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           audio_failed&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           muted&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct resample_info            sample_info&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	audio_resampler_t               *resampler&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	audio_line_t                    *audio_line&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_t                 audio_mutex&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_audio_data           audio_data&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	size_t                          audio_storage_size&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float                           &lt;span class=&quot;keyword&quot;&gt;base_volume;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;	float                           user_volume&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float                           present_volume&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int64_t                         &lt;span class=&quot;keyword&quot;&gt;sync_offset;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* async video data */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gs_texture_t                    *async_texture&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gs_texrender_t                  *async_convert_texrender&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_source_frame         *cur_async_frame&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           async_gpu_conversion&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	enum video_format               async_format&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	enum video_format               async_cache_format&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	enum gs_color_format            async_texture_format&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float                           async_color_matrix[&lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;]&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           async_full_range&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float                           async_color_range_min[&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float                           async_color_range_max[&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int                             async_plane_offset[&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;]&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           async_flip&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           async_active&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	DARRAY(struct async_frame)      async_cache&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	DARRAY(struct obs_source_frame*)async_frames&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_t                 async_mutex&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_width&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_height&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_cache_width&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_cache_height&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_convert_width&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint32_t                        async_convert_height&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* filters */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_source               *filter_parent&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_source               *filter_target&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	DARRAY(struct obs_source*)      filters&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_t                 filter_mutex&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gs_texrender_t                  *filter_texrender&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	enum obs_allow_direct_render    allow_direct&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           rendering_filter&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* sources specific hotkeys */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_hotkey_pair_id              mute_unmute_key&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_hotkey_id                   push_to_mute_key&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_hotkey_id                   push_to_talk_key&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           push_to_mute_enabled : &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           push_to_mute_pressed : &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           push_to_talk_enabled : &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool &lt;/span&gt;                           push_to_talk_pressed : &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        push_to_mute_delay&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        push_to_mute_stop_time&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        push_to_talk_delay&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	uint64_t                        push_to_talk_stop_time&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight cs&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;EXPORT &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;video_output_connect&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;video_t *video,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_scale_info *conversion,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; (*callback&lt;/span&gt;)(&lt;span class=&quot;params&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; *param, &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; video_data *frame&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; *param)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在obs-encoder.c中:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void obs_encoder_start(obs_encoder_t *encoder,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		void (*new_packet)(void *param, struct encoder_packet *packet),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		void *param)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct encoder_callback cb = &amp;#123;false, new_packet, param&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	bool first   = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (!encoder || !new_packet || !encoder-&amp;gt;context.data) return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_lock(&amp;amp;encoder-&amp;gt;callbacks_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	first = (encoder-&amp;gt;callbacks.num == 0);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	size_t idx = get_callback_idx(encoder, new_packet, param);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (idx == DARRAY_INVALID)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		da_push_back(encoder-&amp;gt;callbacks, &amp;amp;cb);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_unlock(&amp;amp;encoder-&amp;gt;callbacks_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (first) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		encoder-&amp;gt;cur_pts = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		add_connection(encoder);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static void add_connection(struct obs_encoder *encoder)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (encoder-&amp;gt;info.type == OBS_ENCODER_AUDIO) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                struct audio_convert_info audio_info = &amp;#123;0&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                get_audio_info(encoder, &amp;amp;audio_info);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                audio_output_connect(encoder-&amp;gt;media, encoder-&amp;gt;mixer_idx,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                &amp;amp;audio_info, receive_audio, encoder);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                struct video_scale_info info = &amp;#123;0&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                get_video_info(encoder, &amp;amp;info);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                video_output_connect(encoder-&amp;gt;media, &amp;amp;info, receive_video,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        encoder);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        encoder-&amp;gt;active = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###基本流程&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;obs_output_begin_data_capture&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(obs_output_t *output, uint32_t flags)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; encoded, has_video, has_audio, has_service;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!output) return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (output-&amp;gt;active) return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	output-&amp;gt;total_frames   = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	convert_flags(output, flags, &amp;amp;encoded, &amp;amp;has_video, &amp;amp;has_audio,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;amp;has_service);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!can_begin_data_capture(output, encoded, has_video, has_audio,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				has_service))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	hook_data_capture(output, encoded, has_video, has_audio);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (has_service)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		obs_service_activate(output-&amp;gt;service);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	output-&amp;gt;active = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (output-&amp;gt;reconnecting) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		signal_reconnect_success(output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;reconnecting = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		signal_start(output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hook_data_capture&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_output *output, &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; encoded,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; has_video, &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; has_audio)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;encoded_callback_t&lt;/span&gt; encoded_callback;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (encoded) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;received_audio   = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;received_video   = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;highest_audio_ts = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;highest_video_ts = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		output-&amp;gt;video_offset     = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;size_t&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; MAX_AUDIO_MIXES; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			output-&amp;gt;audio_offsets[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		free_packets(output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		encoded_callback = (has_video &amp;amp;&amp;amp; has_audio) ?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			interleave_packets : default_encoded_callback;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (has_video)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			obs_encoder_start(output-&amp;gt;video_encoder,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					encoded_callback, output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (has_audio)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			start_audio_encoders(output, encoded_callback);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (has_video)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			video_output_connect(output-&amp;gt;video,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					get_video_conversion(output),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					default_raw_video_callback, output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (has_audio)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			audio_output_connect(output-&amp;gt;audio, output-&amp;gt;mixer_idx,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					get_audio_conversion(output),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					default_raw_audio_callback, output);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;inline&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;do_encode&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_encoder *encoder,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; encoder_frame *frame)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; encoder_packet pkt = &amp;#123;&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; received = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; success;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pkt.timebase_num = encoder-&amp;gt;timebase_num;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pkt.timebase_den = encoder-&amp;gt;timebase_den;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pkt.encoder = encoder;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	success = encoder-&amp;gt;info.encode(encoder-&amp;gt;context.data, frame, &amp;amp;pkt,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;amp;received);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!success) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		full_stop(encoder);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		blog(LOG_ERROR, &lt;span class=&quot;string&quot;&gt;&quot;Error encoding with encoder &#39;%s&#39;&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				encoder-&amp;gt;context.name);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (received) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;/* we use system time here to ensure sync with other encoders,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		 * you do not want to use relative timestamps here */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		pkt.dts_usec = encoder-&amp;gt;start_ts / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt; + packet_dts_usec(&amp;amp;pkt);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		pthread_mutex_lock(&amp;amp;encoder-&amp;gt;callbacks_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;size_t&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; encoder-&amp;gt;callbacks.num; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; encoder_callback *cb;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			cb = encoder-&amp;gt;callbacks.&lt;span class=&quot;built_in&quot;&gt;array&lt;/span&gt;+i;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			send_packet(encoder, cb, &amp;amp;pkt);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		pthread_mutex_unlock(&amp;amp;encoder-&amp;gt;callbacks_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;最重要的全局变量:&lt;/p&gt;
+&lt;figure class=&quot;highlight xl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;100&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct obs_core *obs = NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/* internal initialization */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bool obs_source_init(struct obs_source *source,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		const struct obs_source_info *info)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutexattr_t attr;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;user_volume = &lt;span class=&quot;number&quot;&gt;1.0&lt;/span&gt;f;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;present_volume = &lt;span class=&quot;number&quot;&gt;1.0&lt;/span&gt;f;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;base_volume = &lt;span class=&quot;number&quot;&gt;0.0&lt;/span&gt;f;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;sync_offset = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;pthread_mutex_init_value&lt;/span&gt;(&amp;amp;source-&amp;gt;&lt;/span&gt;filter_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;pthread_mutex_init_value&lt;/span&gt;(&amp;amp;source-&amp;gt;&lt;/span&gt;async_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;pthread_mutex_init_value&lt;/span&gt;(&amp;amp;source-&amp;gt;&lt;/span&gt;audio_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (pthread_mutexattr_init(&amp;amp;attr) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (pthread_mutexattr_settype(&amp;amp;attr, PTHREAD_MUTEX_RECURSIVE) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (pthread_mutex_init(&amp;amp;source-&amp;gt;&lt;/span&gt;filter_mutex, &amp;amp;attr) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (pthread_mutex_init(&amp;amp;source-&amp;gt;&lt;/span&gt;audio_mutex, NULL) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (pthread_mutex_init(&amp;amp;source-&amp;gt;&lt;/span&gt;async_mutex, NULL) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (info &amp;amp;&amp;amp; info-&amp;gt;&lt;/span&gt;output_flags &amp;amp; OBS_SOURCE_AUDIO) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;audio_line&lt;/span&gt; = audio_output_create_line(obs-&amp;gt;&lt;/span&gt;audio.audio,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;context.&lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;xF);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (!source-&amp;gt;&lt;/span&gt;audio_line) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			blog(LOG_ERROR, &lt;span class=&quot;string&quot;&gt;&quot;Failed to create audio line for &quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			                &lt;span class=&quot;string&quot;&gt;&quot;source &#39;%s&#39;&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;context.&lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;control = bzalloc(sizeof(obs_weak_source_t));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;control&lt;/span&gt;-&amp;gt;&lt;/span&gt;source = source;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs_context_data_insert&lt;/span&gt;(&amp;amp;source-&amp;gt;&lt;/span&gt;context,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;amp;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt;.sources_mutex,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;amp;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt;.first_source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;obs_source_t *obs_source_create(enum obs_source_type type, const char *id,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		const char *&lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;, obs_data_t *settings, obs_data_t *hotkey_data)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct obs_source *source = bzalloc(sizeof(struct obs_source));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	const struct obs_source_info *info = get_source_info(type, id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!info) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		blog(LOG_ERROR, &lt;span class=&quot;string&quot;&gt;&quot;Source ID &#39;%s&#39; not found&quot;&lt;/span&gt;, id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;info.id      = bstrdup(id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;info.type    = type;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;owns_info_id = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;info = *info;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;mute_unmute_key  = OBS_INVALID_HOTKEY_PAIR_ID;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;push_to_mute_key = OBS_INVALID_HOTKEY_ID;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;push_to_talk_key = OBS_INVALID_HOTKEY_ID;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!obs_source_init_context(source, settings, &lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;, hotkey_data))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		goto fail;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (info &amp;amp;&amp;amp; info-&amp;gt;&lt;/span&gt;get_defaults)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;info&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;get_defaults&lt;/span&gt;(source-&amp;gt;&lt;/span&gt;context.settings);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!obs_source_init(source, info))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		goto fail;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_source_init_audio_hotkeys(source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* allow the source to be created even if creation fails so that the&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	 * user&#39;s data doesn&#39;t become lost */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (info)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;context&lt;/span&gt;.&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; = info-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;create&lt;/span&gt;(source-&amp;gt;&lt;/span&gt;context.settings,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (!source-&amp;gt;&lt;/span&gt;context.&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		blog(LOG_ERROR, &lt;span class=&quot;string&quot;&gt;&quot;Failed to create source &#39;%s&#39;!&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	blog(LOG_INFO, &lt;span class=&quot;string&quot;&gt;&quot;source &#39;%s&#39; (%s) created&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;name&lt;/span&gt;, id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_source_dosignal(source, &lt;span class=&quot;string&quot;&gt;&quot;source_create&quot;&lt;/span&gt;, NULL);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;flags&lt;/span&gt; = source-&amp;gt;&lt;/span&gt;default_flags;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt;-&amp;gt;&lt;/span&gt;enabled = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;if&lt;/span&gt; (info &amp;amp;&amp;amp; info-&amp;gt;&lt;/span&gt;type == OBS_SOURCE_TYPE_TRANSITION)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;os_atomic_inc_long&lt;/span&gt;(&amp;amp;obs-&amp;gt;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt;.active_transitions);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return source;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;fail:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	blog(LOG_ERROR, &lt;span class=&quot;string&quot;&gt;&quot;obs_source_create failed&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_source_destroy(source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; uint64_t &lt;span class=&quot;title&quot;&gt;tick_sources&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(uint64_t cur_time, uint64_t last_time)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_core_data *data = &amp;amp;obs-&amp;gt;data;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_view      *view = &amp;amp;data-&amp;gt;main_view;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_source    *source;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;uint64_t&lt;/span&gt;             delta_time;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;float&lt;/span&gt;                seconds;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!last_time)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		last_time = cur_time -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			video_output_get_frame_time(obs-&amp;gt;video.video);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	delta_time = cur_time - last_time;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	seconds = (float)((double)delta_time / &lt;span class=&quot;number&quot;&gt;1000000000.0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_lock(&amp;amp;data-&amp;gt;sources_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* call the tick function of each source */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	source = data-&amp;gt;first_source;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (source) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		obs_source_video_tick(source, seconds);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		source = (struct obs_source*)source-&amp;gt;context.next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/* calculate source volumes */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_lock(&amp;amp;view-&amp;gt;channels_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	source = data-&amp;gt;first_source;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (source) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		calculate_base_volume(data, view, source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		source = (struct obs_source*)source-&amp;gt;context.next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_unlock(&amp;amp;view-&amp;gt;channels_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pthread_mutex_unlock(&amp;amp;data-&amp;gt;sources_mutex);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return cur_time;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###Video数据流&lt;/p&gt;
+&lt;p&gt;rtmp_stream_start -&amp;gt; connect_thread -&amp;gt; try_connect -&amp;gt; init_send -&amp;gt; obs_output_begin_data_capture -&amp;gt; hook_data_capture -&amp;gt; obs_encoder_start(interleave_packets) -&amp;gt; add_connection -&amp;gt; video_output_connect(receive_video)&lt;/p&gt;
+&lt;p&gt;obs_source_create -&amp;gt; av_capture_info.create[av_capture_create]&lt;/p&gt;
+&lt;p&gt;captureOutput didOutputSampleBuffer fromConnection -&amp;gt; obs_source_output_video -&amp;gt; cache_video&lt;/p&gt;
+&lt;figure class=&quot;highlight xl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs_init_video&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;pthread_create&lt;/span&gt;(obs_video_thread) -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;tick_sources&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs_source_video_tick&lt;/span&gt; -&amp;gt;&lt;/span&gt; get_closest_frame&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                                   -&amp;gt; render_displays&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                                   -&amp;gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;output_frame&lt;/span&gt; -&amp;gt;&lt;/span&gt; output_video_data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                                   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;video_thread&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;video_output_cur_frame&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;input&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;callback&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;receive_video&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;do_encode&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;encoder&lt;/span&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;info&lt;/span&gt;.encode -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;send_packet&lt;/span&gt; -&amp;gt;&lt;/span&gt; interleave_packets&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;obs_init_video&lt;/span&gt; -&amp;gt;&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;video_output_open&lt;/span&gt; -&amp;gt;&lt;/span&gt; pthread_create(video_thread)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#obs源码分析&lt;/p&gt;
+&lt;p&gt;##编译源码&lt;/p&gt;
+&lt;p&gt;分析源码的第一步是编译源码，这样才能边调试边学习。obs studio支持cmake，在mac osx下可以生成Xcode的工程文件，这样方便调试。obs依赖的库有ffmpeg, qt5等，用brew可以很方便的安
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>obs视频采集源码分析</title>
+    <link href="http://jiantaofu.github.io/2015/07/12/obs%E8%A7%86%E9%A2%91%E9%87%87%E9%9B%86%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <id>http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/</id>
+    <published>2015-07-12T19:00:06.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#obs视频采集源码分析&lt;/p&gt;
+&lt;p&gt;obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。&lt;/p&gt;
+&lt;p&gt;相关的文件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;plugins/av-capture.m&lt;/li&gt;
+&lt;li&gt;plugins/AVCaptureInputPort+PreMavericksCompat.h&lt;/li&gt;
+&lt;li&gt;libobs/obs.c&lt;/li&gt;
+&lt;li&gt;libobs/media-io/video-io.c&lt;/li&gt;
+&lt;li&gt;libobs/media-io/video-frame.c &lt;/li&gt;
+&lt;li&gt;libobs/obs-output.c&lt;/li&gt;
+&lt;li&gt;obs/window-basic-main.cpp&lt;/li&gt;
+&lt;li&gt;obs/window-basic-main-outputs.cpp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里定义了插件接口的实现:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_source_info av_capture_info = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.id             = &lt;span class=&quot;string&quot;&gt;&quot;av_capture_input&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.type           = OBS_SOURCE_TYPE_INPUT,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.output_flags   = OBS_SOURCE_ASYNC_VIDEO,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.get_name       = av_capture_getname,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.create         = av_capture_create,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.destroy        = av_capture_destroy,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.get_defaults   = av_capture_defaults,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.get_properties = av_capture_properties,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	.update         = av_capture_update,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;av_capture_create的流程基本上演示了AVFoundation的VideoCapture的基本api调用: &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;av_capture_create -&amp;gt; av_capture_init -&amp;gt; init_session -&amp;gt; dispatch_queue_create
+                                                     -&amp;gt; addOutput
+                                                     -&amp;gt; setSampleBufferDelegate
+                                     -&amp;gt; AVCaptureDeviceWasDisconnectedNotification
+                                     -&amp;gt; AVCaptureDeviceWasConnectedNotification
+                                     -&amp;gt; deviceWithUniqueID
+                                     -&amp;gt; capture_device -&amp;gt; init_device_input(add AVCaptureDeviceInput)
+                                                       -&amp;gt; init_format(kCVPixelBufferPixelFormatTypeKey)
+                                                       -&amp;gt; startRunning
+                  -&amp;gt; av_capture_enable_buffering(set/unset OBS_SOURCE_FLAG_UNBUFFERED)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中包括了创建AVCaptureSession用来协调输入输出，创建AVCaptureVideoDataOutput来获取输出， OBSAVCaptureDelegate来处理每一帧的数据，创建AVCaptureDeviceInput用来从AVCaptureDevice中采集符合Preset设置的格式的数据。&lt;/p&gt;
+&lt;p&gt;下面实现了采集Frame的回调函数，其中调用了update_frame将输出转化为obs内部的frame数据结构，然后调用obs_source_output_video将数据存储在cache中(cache_video)：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)captureOutput:(AVCaptureOutput *)captureOutput&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        fromConnection:(AVCaptureConnection *)connection&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	UNUSED_PARAMETER(captureOutput);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	UNUSED_PARAMETER(connection);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	CMItemCount count = CMSampleBufferGetNumSamples(sampleBuffer);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (count &amp;lt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; || !capture)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; obs_source_frame *frame = &amp;amp;capture-&amp;gt;frame;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	CMTime target_pts =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	CMTime target_pts_nano = CMTimeConvertScale(target_pts, NANO_TIMESCALE,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			kCMTimeRoundingMethod_Default);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	frame-&amp;gt;timestamp = target_pts_nano.value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!update_frame(capture, frame, sampleBuffer))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	obs_source_output_video(capture-&amp;gt;source, frame);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	CVImageBufferRef img = CMSampleBufferGetImageBuffer(sampleBuffer);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	CVPixelBufferUnlockBaseAddress(img, kCVPixelBufferLock_ReadOnly);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当通过UI操作添加视频源(OBSBasicSourceSelect::on_buttonBox_accepted)时，会调用obs_source_create，obs_source_create会调用av_capture_info.create。&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (info)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        source-&amp;gt;context.data = info-&amp;gt;create(source-&amp;gt;context.settings,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        source);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;回过头在看一下Video相关的一些初始化参数:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; OBSBasic::InitBasicConfigDefaults()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;BaseCX&quot;&lt;/span&gt;,   cx);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;BaseCY&quot;&lt;/span&gt;,   cy);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cx = cx * &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;15&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cy = cy * &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;15&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;OutputCX&quot;&lt;/span&gt;, cx);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;OutputCY&quot;&lt;/span&gt;, cy);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;FPSType&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_string(basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;FPSCommon&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;30&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;FPSInt&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;FPSNum&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_uint  (basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;FPSDen&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_string(basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ScaleType&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;bicubic&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_string(basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ColorFormat&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;NV12&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_string(basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ColorSpace&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;709&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        config_set_default_string(basicConfig, &lt;span class=&quot;string&quot;&gt;&quot;Video&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ColorRange&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &lt;span class=&quot;string&quot;&gt;&quot;Partial&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Video初始化过程:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;OBSBasic::OBSInit() -&amp;gt; OBSBasic::ResetVideo() -&amp;gt; AttemptToResetVideo -&amp;gt; obs_reset_video -&amp;gt; obs_init_video
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里obs_init_video创建了两个线程，video_thread用于输出(streaming/recording)，obs_video_thread用于预览。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;obs_init_video -&amp;gt; video_output_open -&amp;gt; video_thread -&amp;gt; video_output_cur_frame -&amp;gt; callback
+               -&amp;gt; obs_video_thread -&amp;gt; output_frame -&amp;gt; render_video
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下面是rtmp streaming的初始化，在这里会创建一个obs_video_thread线程，并开始video encoder，并设置采集到video frame后的callback为receive_video，在receive_video里面会做视频编码。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;StartStreaming -&amp;gt; obs_output_start -&amp;gt; rtmp_stream_start(connect_thread)
+connect_thread -&amp;gt; init_send -&amp;gt; obs_output_begin_data_capture -&amp;gt; hook_data_capture -&amp;gt; obs_encoder_start -&amp;gt; add_connection -&amp;gt; video_output_connect(receive_video)
+receive_video -&amp;gt; do_encode
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来再看看视频采集出来的format，前面的初始化的配置里面ColorFormat设置为NV12，不同的Format在内存中分配的数据结构不一样，从video_frame_init里面可以看到，现在支持的Format包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VIDEO_FORMAT_I420&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_NV12&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_YVYU&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_YUY2&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_UYVY&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_RGBA&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_BGRA&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_BGRX&lt;/li&gt;
+&lt;li&gt;VIDEO_FORMAT_I444&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中VIDEO_FORMAT_YVYU，VIDEO_FORMAT_YUY2，VIDEO_FORMAT_UYVY的数据结构一样；VIDEO_FORMAT_RGBA，VIDEO_FORMAT_BGRA，VIDEO_FORMAT_BGRX的数据结构一样。NV12的数据帧内存结构如下:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://p.blog.csdn.net/images/p_blog_csdn_net/hhygcy/EntryImages/20081125/nv12.png&quot; alt=&quot;Single Frame YUV420: NV12&quot;&gt;&lt;/p&gt;
+&lt;p&gt;更多格式可以参考&lt;a href=&quot;http://www.cnblogs.com/azraelly/archive/2013/01/01/2841269.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;对应video_frame_init中NV12的代码如下:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; VIDEO_FORMAT_NV12:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        size = width * height;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ALIGN_SIZE(size, alignment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        offsets[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = size;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        size += (width/&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) * (height/&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) * &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ALIGN_SIZE(size, alignment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;data[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = bmalloc(size);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;data[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] = (&lt;span class=&quot;keyword&quot;&gt;uint8_t&lt;/span&gt;*)frame-&amp;gt;data[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] + offsets[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;linesize[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = width;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;linesize[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] = width;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;首先存储Y需要width &lt;em&gt; height字节，因为每4个Y分别对应一个U和V，所以再加上width/2 &lt;/em&gt; height/2 * 2。这里的data[0]指向的就是frame开始的存储地址，data[1]是UV分量的起始地址。NV12是一种two-plane模式，即Y和UV分为两个Plane，但是UV（CbCr）为交错存储。linesize[0]是Y Plane跳到下一个行的字节数，linesize[1]是UV Plane跳到下一个行的字节数。更多请参考&lt;a href=&quot;http://stackoverflow.com/questions/13286022/can-anyone-help-in-understanding-avframe-linesize&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在mac下面，摄像头采集出来的ColorFormat是UYVY，每两个相邻的Y分别对应一个U和V。YUY2和YVYU的内存大小一样，唯一的区别是YUV分量的顺序有些区别。下面是UYVY的结构：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img1.51cto.com/attachment/201104/202455202.png&quot; alt=&quot;UYVY&quot;&gt;&lt;/p&gt;
+&lt;p&gt;对应video_frame_init中UYVY的代码如下:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; VIDEO_FORMAT_YVYU:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; VIDEO_FORMAT_YUY2:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; VIDEO_FORMAT_UYVY:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        size = width * height * &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ALIGN_SIZE(size, alignment);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;data[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = bmalloc(size);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        frame-&amp;gt;linesize[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = width*&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从上面的内存结构可以看出存储需要的字节数时width &lt;em&gt; height &lt;/em&gt; 2，data[0]指向的就是frame开始的存储地址，linesize[0]是Plane跳到下一个行的字节数，从上图可以看出这个是width个字节。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#obs视频采集源码分析&lt;/p&gt;
+&lt;p&gt;obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。&lt;/p&gt;
+&lt;p&gt;相关的文件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;plugins/av-capture.m&lt;/li&gt;
+&lt;li&gt;plugins/AVCaptureI
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DASH标准</title>
+    <link href="http://jiantaofu.github.io/2015/06/06/DASH%E6%A0%87%E5%87%86/"/>
+    <id>http://jiantaofu.github.io/2015/06/06/DASH标准/</id>
+    <published>2015-06-06T18:28:31.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#DASH标准&lt;/p&gt;
+&lt;p&gt;##功能&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Multiple Audio Channels&lt;/em&gt;&lt;/strong&gt;: 支持有多个语言的音频切换&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Closed Captions/Subtitles&lt;/em&gt;&lt;/strong&gt;: 使用&lt;a href=&quot;http://dev.w3.org/html5/webvtt/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;webvtt&lt;/a&gt;来描述字幕。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Efficient AD Insertion&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Fast Channel Switching&lt;/em&gt;&lt;/strong&gt;: DASH的chunk为2-4秒，小的chunk可以方便做到不同频道间的快速切换，减少响应时间，而且有利于码率自适应的调整。但这个是以牺牲Video编码的效率(大的chunk可以有更高的压缩比)和网络协议的开销为代价的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Support Multiple CDNs In Parallel&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;DASH可以通过BaseURLs来告诉客户端可用的CDN，客户端可以自行选择。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;HTML5支持&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;支持HTML5的&lt;a href=&quot;http://w3c.github.io/media-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Media Source Extensions&lt;/a&gt;的浏览器可以直接播放。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;HbbTV支持&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Agnostic to Audio/Video Codecs&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;支持不同的Audio/Video编码&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;ISO Base Media File Format Segments&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;MPEG-2 TS Segments&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;WebM Segments&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;HEVC and 4K&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Multiplexed Audio/Video Content&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Quality of Metrics&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Client Logging &amp;amp; Reporting&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Client Failover&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Remove and add Quality Levels during Streaming&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Multiple Video Views&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Efficient Trick Modes&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##参考&lt;/p&gt;
+&lt;p&gt;[MPEG-DASH vs. Apple HLS vs. Microsoft Smooth Streaming vs. Adobe HDS]&lt;a href=&quot;http://www.bitcodin.com/blog/2015/03/mpeg-dash-vs-apple-hls-vs-microsoft-smooth-streaming-vs-adobe-hds/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.bitcodin.com/blog/2015/03/mpeg-dash-vs-apple-hls-vs-microsoft-smooth-streaming-vs-adobe-hds/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[What is MPEG DASH?]&lt;a href=&quot;http://www.streamingmedia.com/Articles/Editorial/What-Is-.../What-is-MPEG-DASH-79041.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.streamingmedia.com/Articles/Editorial/What-Is-.../What-is-MPEG-DASH-79041.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[DASH Industry Forum]&lt;a href=&quot;http://dashif.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dashif.org/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#DASH标准&lt;/p&gt;
+&lt;p&gt;##功能&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Multiple Audio Channels&lt;/em&gt;&lt;/strong&gt;: 支持有多个语言的音频切换&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Closed Captions/Subtitles&lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Live Streaming技术综述</title>
+    <link href="http://jiantaofu.github.io/2015/06/05/Live-Streaming%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/"/>
+    <id>http://jiantaofu.github.io/2015/06/05/Live-Streaming技术综述/</id>
+    <published>2015-06-06T00:24:52.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#Live Streaming技术综述&lt;/p&gt;
+&lt;p&gt;##架构图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;Live-Streaming技术综述/unified-streaming.png&quot; alt=&quot;unified-streaming&quot;&gt;&lt;/p&gt;
+&lt;p&gt;系统大致可以分解为如下几部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;音视频的编码。&lt;/li&gt;
+&lt;li&gt;将编码后的（实时或VOD）数据给到Streaming Server，Server可以对数据进行DRM加密，转码等。&lt;/li&gt;
+&lt;li&gt;Streaming Server根据客户端的请求将数据转化为不同的格式，通过不同的协议分发到客户端。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以参考这里的&lt;a href=&quot;http://info.wowza.com/live-video-streaming-solutions-watch-how-to-video&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;视频&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下面根据数据流的不同阶段来进行分析。&lt;/p&gt;
+&lt;p&gt;##技术分析&lt;/p&gt;
+&lt;p&gt;###音视频的编码和发布&lt;/p&gt;
+&lt;p&gt;####商业产品####&lt;/p&gt;
+&lt;p&gt;商业产品包括软件和硬件设备，下面主要列举了一些软件，硬件提供的功能和软件类似，并且有些还有辅助的软件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. Wirecast&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Wirecast支持多种&lt;a href=&quot;http://www.telestream.net/wirecast/features.htm#capture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;输入源&lt;/a&gt;，包括WebCam, 视频采集卡，Web Stream, IP Camera等。除了音视频编码外，Wirecast还有许多相关的&lt;a href=&quot;http://www.telestream.net/application-content/wirecast/help/6-0/mac/tutorials.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;辅助功能&lt;/a&gt;，比如不同场景(shot)的切换，音频的组合选择，标题编辑，ScoreBoard，虚拟场景。Wirecast支持多种不同的Streaming平台，并且有一个YouTube的&lt;a href=&quot;http://www.telestream.net/application-content/wirecast/YouTube/help/6-0/mac/index.html#Wirecast_Users_Guide/Tutorials/Tutorials.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;定制版本&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;API支持: Wirecast API并没有提供比UI操作更丰富的&lt;a href=&quot;http://forum.telestream.net/forum/messageview.aspx?catid=44&amp;amp;threadid=10540&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;接口&lt;/a&gt;，mac下可以通过&lt;a href=&quot;http://forum.telestream.net/forum/messageview.aspx?catid=45&amp;amp;threadid=12517&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;applescript控制&lt;/a&gt;，Windows下提供了com接口（有第三方的&lt;a href=&quot;https://github.com/DynamoBen/Wirecast/tree/master/API&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python API&lt;/a&gt;)，并非一个可以扩展的框架。&lt;/p&gt;
+&lt;p&gt;Encoder: H264, X264&lt;/p&gt;
+&lt;p&gt;价格: &lt;a href=&quot;http://www.telestream.net/wirecast/store.asp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Studio $495, Pro $995&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;平台: MAC/WINDOWS&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. UStream Producer&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;功能和Wirecast类似。&lt;/p&gt;
+&lt;p&gt;价格: &lt;a href=&quot;http://www.telestream.net/wirecast/store.asp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Studio $279, Pro $549&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;3. Flash Media Live Encoder&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Flash Media Live Encoder支持的输入源包括webcam和视频采集卡，只支持一路视频。没有其他一些辅助功能。&lt;/p&gt;
+&lt;p&gt;API:  仅仅提供了&lt;a href=&quot;http://help.adobe.com/en_US/FlashMediaLiveEncoder/3.0/Using/WS5b3ccc516d4fbf351e63e3d11c104babd5-7ffc.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;command line&lt;/a&gt;工具&lt;/p&gt;
+&lt;p&gt;Encoder: H264, VP6&lt;/p&gt;
+&lt;p&gt;平台: MAC/WINDOWS&lt;/p&gt;
+&lt;p&gt;价格: Freeware&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. XSplit&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;XSplit输入源包括Screen/Camera，支持多个场景(Scence)，标题编辑等辅助功能。&lt;/p&gt;
+&lt;p&gt;Encoder: H264&lt;/p&gt;
+&lt;p&gt;API: 无&lt;/p&gt;
+&lt;p&gt;平台: WINDOWS&lt;/p&gt;
+&lt;p&gt;价格: Personal $39.95/year,  Premium $59.95/year&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;VID Blaster&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;功能和Wirecast类似。&lt;/p&gt;
+&lt;p&gt;####开源产品####&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Open Broadcast Software&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OBS默认支持的&lt;a href=&quot;https://github.com/jp9000/OBS/wiki/Built-in-Sources&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;输入源&lt;/a&gt;比较有限，但可以通过plugin方式进行扩展。OBS也支持多个场景(&lt;a href=&quot;https://jp9000.github.io/OBS/general/scenes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scene&lt;/a&gt;)，标题编辑，也支持多种不同的Streaming平台，如&lt;a href=&quot;https://twitchtips.com/obs-setup/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TWITCH&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=dD0Z9VylyU8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YouTube&lt;/a&gt;。OBS原先只支持&lt;a href=&quot;https://github.com/jp9000/OBS&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Windows&lt;/a&gt;，新版本可以&lt;a href=&quot;https://github.com/jp9000/obs-studio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;跨平台&lt;/a&gt;，但还不完善。&lt;/p&gt;
+&lt;p&gt;API: 提供plugin接口&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;WebcamStudio&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;(WebcamStudio)[&lt;a href=&quot;https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###Streaming服务器和cloud平台&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. WOWZA&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;产品线完整，包含Server和Cloud。支持所有主流的协议(HLS, HDS等)。输入源支持的也非常丰富，并且支持比较多的合作厂商的设备。输入源支持Push和Pull两种方式。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.wowza.com/products/streaming-cloud/features&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Streaming Cloud&lt;/a&gt;现在的API未公开，但看起来操作应该不会超出UI提供的功能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.wowza.com/products/streaming-engine&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Streaming Server&lt;/a&gt;非常成熟, &lt;a href=&quot;http://www.wowza.com/resources/WowzaStreamingEngine_ServerSideAPI.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;API&lt;/a&gt;非常丰富(复杂)。Server的部署和分发也提供相应的&lt;a href=&quot;http://www.wowza.com/products/streaming-engine/deployment-options&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;支持&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;另外WOWZA还提供了&lt;a href=&quot;http://www.wowza.com/products/streaming-engine/deployment-options&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GeoIP&lt;/a&gt;的数据库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. Kaltura&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://knowledge.kaltura.com/live-streaming-using-kaltura-live-streaming-hds-hls-dash&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kaltura&lt;/a&gt;的功能类似，也有服务器和cloud产品，从介绍上来看也非常完善。Kaltura是一套&lt;a href=&quot;https://github.com/kaltura&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;开源&lt;/a&gt;的解决方案，也提供&lt;a href=&quot;http://corp.kaltura.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;商业服务&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;3. UStream&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.ustream.tv/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Ustream&lt;/a&gt;仅仅提供Cloud服务，没有Server，但是却提供了Client的library，包括Android/iOS/Roku。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. Youtube&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Youtube也仅仅提供Cloud服务，没有Server。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;5. JWPlayer&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;原先只是flash播放器，现在也在提供cloud服务。&lt;/p&gt;
+&lt;p&gt;##产品架构选型&lt;/p&gt;
+&lt;p&gt;###需求分析&lt;/p&gt;
+&lt;p&gt;能动态的根据用户相关的数据来实时生成广告版。现有的支持音视频编辑的软件可以mix多路视频，但这些都是在客户端发布视频之前做的，而用户相关的数据只有服务器端才有，所以需要在服务器端做mix。&lt;/p&gt;
+&lt;p&gt;##功能&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Streaming&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HTTP scalability&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HTTP caching&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Trickplay&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Alternate video/audio track&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Text streams&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Rough cut editing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ad insertion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Network DVR(Digital Video Recorder)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stream recording&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DRM(Digital Rights Management)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##客户端&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JW Player&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Flowplayer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##协议&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UDP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TCP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RTSP/RTP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HTTP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Apple HLS&lt;/strong&gt;: HTTP Live Streaming&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Adobe HDS&lt;/strong&gt;: HTTP Dynamic Streaming&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Microsoft Smooth Streaming&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MPEG-TS&lt;/strong&gt;: MPEG-2 Transport Streams，多用于IPTV&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MPEG-DASH Streaming&lt;/strong&gt;: Moving Picture Experts Group Dynamic Adaptive Streaming over HTTP&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MPD&lt;/strong&gt;: Media Presenation Descriptino&lt;/p&gt;
+&lt;p&gt;##名词解析&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ABR&lt;/strong&gt;: Adaptive bitrate streaming通过监测下行带宽的变化或用户的操作来自动适应带宽变化或屏幕大小变化。为了保证平滑的切换不同质量的视频，ABR对encoder是有一定要求的，需要编码的时候不同质量的关键帧能同步。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SMIL&lt;/strong&gt;: Synchronized Multimedia Integration Language用来描述视频源可用的bitrate和size等配置，client可以根据这些配置来选择不同质量的视频。Mobile客户端和Desktop客户端一般会有不同的配置，不同的平台也有特定的要求（iOS bitrate不超过64 kbps)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DASH&lt;/strong&gt;: Dynamic Adaptive Streaming over HTTP&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HbbTV&lt;/strong&gt;: Hybrid Broadcast Broadband TV&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Container&lt;/strong&gt;: 容器就是把编码器生成的多媒体内容（视频，音频，字幕，章节信息等）混合封装在一起的标准。容器使得不同多媒体内容同步播放变得很简单，而容器的另一个作用就是为多媒体内容提供索引，也就是说如果没有容器存在的话一部影片你只能从一开始看到最后，不能拖动进度条（当然这种情况下有的播放器会话比较长的时间临时创建索引），而且如果你不自己去手动另外载入音频就没有声音。&lt;/p&gt;
+&lt;p&gt;##参考&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://info.wowza.com/abr-white-paper&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Adaptive Bitrate Streaming with Wowza Streaming Engine&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://info.wowza.com/mediacache-white-paper&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Media Cache White Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://info.wowza.com/tv-anywhere-white-paper&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TV Anywhere White Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.dacast.com/white-papers/smb-market-for-paid-video-streaming-services/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SMB Market For Paid Video Streaming Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/wiliwe/streaming-media-server-setup-manual&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;streaming media server setup manual&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#Live Streaming技术综述&lt;/p&gt;
+&lt;p&gt;##架构图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;Live-Streaming技术综述/unified-streaming.png&quot; alt=&quot;unified-streaming&quot;&gt;&lt;/p&gt;
+&lt;p&gt;系统大致可以分解为如下几部
+    
+    </summary>
+    
+    
+      <category term="Live Streaming" scheme="http://jiantaofu.github.io/tags/Live-Streaming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>吉他和弦基础理论</title>
+    <link href="http://jiantaofu.github.io/2015/05/31/%E5%90%89%E4%BB%96%E5%92%8C%E5%BC%A6%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA/"/>
+    <id>http://jiantaofu.github.io/2015/05/31/吉他和弦基础理论/</id>
+    <published>2015-05-31T20:40:36.000Z</published>
+    <updated>2016-04-13T22:06:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#吉他和弦基础理论&lt;/p&gt;
+&lt;p&gt;##音符&lt;/p&gt;
+&lt;p&gt;音乐有12个音符(Note)，每个音符之间隔一个半音，比如B和C之间就隔一个半音(H)，A和B之间隔一个全音(W, 即两个半音):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;A&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;B&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;C&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;D&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;E&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;F&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;G&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt; 1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;2&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;3&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;4&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;5&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;6&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;7&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;8&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;9&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;10&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;11&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt; 音符在吉他上的位置，从左到右对应0-12个音格(Fred)，从上到下对应1-6弦：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;0&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;8&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;9&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;10&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;11 &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;#9839;/G&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;#9839;/A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9839;/B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;#9839;/D&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;#9839;/E&amp;#9837; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;##音阶(Scale)&lt;/p&gt;
+&lt;p&gt;常见的有大调音阶和小调音阶，它们的区别在于全音(W)和半音(H)的排列顺序不同，而这种不同的顺序会带来不同的风格。在演奏音乐时，如果要转调，需要注意转调后的音阶时不变的，所以需要对某些音做升降处理。&lt;/p&gt;
+&lt;p&gt;###大调(Major)音阶&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####C大调&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####F大调&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;###小调(Minor)音阶&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####A小调&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####C小调&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;nbsp; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这里介绍的是自然小调，除此之外还有旋律小调和和声小调。&lt;/p&gt;
+&lt;p&gt;###Seventh Dominant音阶&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&amp;nbsp;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;H&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;W&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Seventh音阶是在大调(Major)音阶基础上，将大调音阶的第七个音降半音演化过来的。&lt;/p&gt;
+&lt;p&gt;####C7&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&amp;nbsp;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&amp;#9837;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;##和弦的演变&lt;/p&gt;
+&lt;p&gt;和弦的三大类: Majors, Minors和Seventh，一个音阶有12个音符，以每个音符为主音有三种和弦，那么就有12 * 3 = 36种基本和弦。&lt;/p&gt;
+&lt;p&gt;###Major和弦&lt;/p&gt;
+&lt;p&gt;从C大调音阶里面挑选出C, E, G就构成了C和弦。可以看到下面的C和弦弹奏的音符从上到下（6－1弦）分别为C, E, G, C, E&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmaj.png?p=x32010&amp;amp;f=-32-1-&amp;amp;s=3&quot; alt=&quot;CMajor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;下面是C和弦的另外一个版本:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmaj.png?p=8-10-10-9-8-8&amp;amp;f=134211&amp;amp;s=3&quot; alt=&quot;CMajor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;虽然复杂了很多，但弹奏的音符还是C, E, G三个音，从上到下（6－1弦）分别为C, G, C, E, E, G, C&lt;/p&gt;
+&lt;p&gt;从C Major基础和弦演化，加入C大调音阶的第6个音A，就构成了CMaj6和弦&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmaj6.png?p=x35555&amp;amp;s=3&quot; alt=&quot;CMajor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;###Minor和弦&lt;/p&gt;
+&lt;p&gt;从C小调音阶里面挑选出C, E&amp;#9837;, G就构成了C和弦。可以看到下面的C Minor和弦弹奏的音符从上到下（6－1弦）分别为C, E&amp;#9837;, G, C&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmin.png?p=x3101x&amp;amp;s=3&quot; alt=&quot;CMinor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;下面是C Minor和弦的另外一个版本:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmin.png?p=x35543&amp;amp;f=-13421&amp;amp;s=3&quot; alt=&quot;CMinor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;从C Minor基础和弦演化，加入C小调音阶的第7个音B&amp;#9837;，就构成了C Minor7和弦&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/Cmin7.png?p=x3131x&amp;amp;f=-3141-&amp;amp;s=3&quot; alt=&quot;CMinor7&quot;&gt;&lt;/p&gt;
+&lt;p&gt;###Seventh和弦&lt;/p&gt;
+&lt;p&gt;Seventh和弦是在Major和弦基础上，加上大调音阶的第七个音降半音演化过来的。&lt;/p&gt;
+&lt;p&gt;C7和弦的构成: C, E, G, B&amp;#9837;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://chordgenerator.net/C7.png?p=x32310&amp;amp;f=-3241-&amp;amp;s=3&quot; alt=&quot;CMajor&quot;&gt;&lt;/p&gt;
+&lt;p&gt;###超出一个音阶的和弦&lt;/p&gt;
+&lt;p&gt;和弦还可以扩展超出一个音阶：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;2&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;4&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;6&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;9&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;3&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;11&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;5&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;13&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;7&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;E&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;F&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;G&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;A&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;B&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;C9和弦的构成: C, E, G, B&amp;#9837;, D&lt;/p&gt;
+&lt;p&gt;C13和弦的构成: C, E, G, B&amp;#9837;, D, A&lt;/p&gt;
+&lt;p&gt;C7&amp;#9837;9和弦的构成: C, E, G, B&amp;#9837;, D&amp;#9837;&lt;/p&gt;
+&lt;p&gt;##参考&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.amazon.com/BASIC-CHORDS-GUITAR-Basic-Series/dp/1860743633&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Basic Chords For Guitar&lt;/a&gt;  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://einaregilsson.com/chord-image-generator/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Chord Image Generator&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.tipbook.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=83:tipcodes-music-on-paper&amp;amp;catid=85:tipcodes-en&amp;amp;lang=en&amp;amp;Itemid=527&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tipcodes Music On Paper&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      吉他和弦基础理论
+    
+    </summary>
+    
+    
+      <category term="吉他, 和弦" scheme="http://jiantaofu.github.io/tags/%E5%90%89%E4%BB%96-%E5%92%8C%E5%BC%A6/"/>
+    
+  </entry>
+  
+</feed>
