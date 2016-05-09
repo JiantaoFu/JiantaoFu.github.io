@@ -165,12 +165,11 @@
                     
                         <p>
                             官方的文档在这下载
-##基本概念
-
+基本概念
 Message Stream: 用于消息传输的逻辑通道，多个Stream可以复用同一个物理连接。
 Message Stream ID: 用于标识不同的流。
 Chunk: 消息传输需要将其拆分成小的片段，以便复用减少时延。
-Chunk Stream: 用于传输Chunk的逻辑通道，一个Chunk Stream可以复用多个Message Stream。一个物理连接上<br>
+Chunk Stream: 用于传输Chunk的逻辑通道，一个Chunk Stream可以复用多个Message Stream。一个物理连接上可以复<br>
                     
                     
                         
@@ -245,12 +244,10 @@ Chunk Stream: 用于传输Chunk的逻辑通道，一个Chunk Stream可以复用�
                 <div class="post-excerpt" itemprop="articleBody">
                     
                         <p>
-                            #obs源码分析
-##编译源码
-分析源码的第一步是编译源码，这样才能边调试边学习。obs studio支持cmake，在mac osx下可以生成Xcode的工程文件，这样方便调试。obs依赖的库有ffmpeg, qt5等，用brew可以很方便的安装。
+                            obs源码分析编译源码分析源码的第一步是编译源码，这样才能边调试边学习。obs studio支持cmake，在mac osx下可以生成Xcode的工程文件，这样方便调试。obs依赖的库有ffmpeg, qt5等，用brew可以很方便的安装。
 1brew install qt5
 需要注意的是用cmake生成工程文件前需要设置环境变量:
-1export CMAKE_PREFIX_PATH=/<br>
+1export CMAKE_PREFIX_PATH=/usr/l<br>
                     
                     
                         
@@ -287,15 +284,14 @@ Chunk Stream: 用于传输Chunk的逻辑通道，一个Chunk Stream可以复用�
                 <div class="post-excerpt" itemprop="articleBody">
                     
                         <p>
-                            #obs视频采集源码分析
-obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。
+                            obs视频采集源码分析obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。
 相关的文件:
 
 plugins/av-capture.m
 plugins/AVCaptureInputPort+PreMavericksCompat.h
 libobs/obs.c
 libobs/media-io/video-io.c
-libobs/media-io/video-frame.<br>
+libobs/media-io/video-frame.c <br>
                     
                     
                         
@@ -332,12 +328,10 @@ libobs/media-io/video-frame.<br>
                 <div class="post-excerpt" itemprop="articleBody">
                     
                         <p>
-                            #DASH标准
-##功能
-Multiple Audio Channels: 支持有多个语言的音频切换
+                            DASH标准功能Multiple Audio Channels: 支持有多个语言的音频切换
 Closed Captions/Subtitles: 使用webvtt来描述字幕。
 Efficient AD Insertion
-Fast Channel Switching: DASH的chunk为2-4秒，小的chunk可以方便做到不同频道间的快速切换，减少响应时间，而且有利于码率自适应的调整<br>
+Fast Channel Switching: DASH的chunk为2-4秒，小的chunk可以方便做到不同频道间的快速切换，减少响应时间，而且有利于码率自适应的调整。但这个是<br>
                     
                     
                         
@@ -374,9 +368,7 @@ Fast Channel Switching: DASH的chunk为2-4秒，小的chunk可以方便做到不
                 <div class="post-excerpt" itemprop="articleBody">
                     
                         <p>
-                            #Live Streaming技术综述
-##架构图
-
+                            Live Streaming技术综述架构图
 系统大致可以分解为如下几部分：
 
 音视频的编码。
@@ -385,8 +377,7 @@ Streaming Server根据客户端的请求将数据转化为不同的格式，通�
 
 可以参考这里的视频
 下面根据数据流的不同阶段来进行分析。
-##技术分析
-##<br>
+技术分析音视频的编码和发布商<br>
                     
                     
                         
@@ -427,9 +418,7 @@ Streaming Server根据客户端的请求将数据转化为不同的格式，通�
                 <div class="post-excerpt" itemprop="articleBody">
                     
                         <p>
-                            #吉他和弦基础理论
-##音符
-音乐有12个音符(Note)，每个音符之间隔一个半音，比如B和C之间就隔一个半音(H)，A和B之间隔一个全音(W, 即两个半音):
+                            吉他和弦基础理论音符音乐有12个音符(Note)，每个音符之间隔一个半音，比如B和C之间就隔一个半音(H)，A和B之间隔一个全音(W, 即两个半音):
 
 
 
@@ -452,7 +441,10 @@ G&#9839;/A&#9837;
  1
 2
 3
-4<br>
+4
+5
+6
+<br>
                     
                     
                         

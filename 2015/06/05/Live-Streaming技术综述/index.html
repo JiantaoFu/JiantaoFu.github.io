@@ -155,9 +155,7 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <p>#Live Streaming技术综述</p>
-<p>##架构图</p>
-<p><img src="Live-Streaming技术综述/unified-streaming.png" alt="unified-streaming"></p>
+        <h1 id="Live-Streaming技术综述"><a href="#Live-Streaming技术综述" class="headerlink" title="Live Streaming技术综述"></a>Live Streaming技术综述</h1><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="Live-Streaming技术综述/unified-streaming.png" alt="unified-streaming"></p>
 <p>系统大致可以分解为如下几部分：</p>
 <ol>
 <li>音视频的编码。</li>
@@ -166,10 +164,7 @@
 </ol>
 <p>可以参考这里的<a href="http://info.wowza.com/live-video-streaming-solutions-watch-how-to-video" target="_blank" rel="external">视频</a></p>
 <p>下面根据数据流的不同阶段来进行分析。</p>
-<p>##技术分析</p>
-<p>###音视频的编码和发布</p>
-<p>####商业产品####</p>
-<p>商业产品包括软件和硬件设备，下面主要列举了一些软件，硬件提供的功能和软件类似，并且有些还有辅助的软件。</p>
+<h2 id="技术分析"><a href="#技术分析" class="headerlink" title="技术分析"></a>技术分析</h2><h3 id="音视频的编码和发布"><a href="#音视频的编码和发布" class="headerlink" title="音视频的编码和发布"></a>音视频的编码和发布</h3><h4 id="商业产品"><a href="#商业产品" class="headerlink" title="商业产品"></a>商业产品</h4><p>商业产品包括软件和硬件设备，下面主要列举了一些软件，硬件提供的功能和软件类似，并且有些还有辅助的软件。</p>
 <p><strong><em>1. Wirecast</em></strong></p>
 <p>Wirecast支持多种<a href="http://www.telestream.net/wirecast/features.htm#capture" target="_blank" rel="external">输入源</a>，包括WebCam, 视频采集卡，Web Stream, IP Camera等。除了音视频编码外，Wirecast还有许多相关的<a href="http://www.telestream.net/application-content/wirecast/help/6-0/mac/tutorials.htm" target="_blank" rel="external">辅助功能</a>，比如不同场景(shot)的切换，音频的组合选择，标题编辑，ScoreBoard，虚拟场景。Wirecast支持多种不同的Streaming平台，并且有一个YouTube的<a href="http://www.telestream.net/application-content/wirecast/YouTube/help/6-0/mac/index.html#Wirecast_Users_Guide/Tutorials/Tutorials.htm" target="_blank" rel="external">定制版本</a>.</p>
 <p>API支持: Wirecast API并没有提供比UI操作更丰富的<a href="http://forum.telestream.net/forum/messageview.aspx?catid=44&amp;threadid=10540" target="_blank" rel="external">接口</a>，mac下可以通过<a href="http://forum.telestream.net/forum/messageview.aspx?catid=45&amp;threadid=12517" target="_blank" rel="external">applescript控制</a>，Windows下提供了com接口（有第三方的<a href="https://github.com/DynamoBen/Wirecast/tree/master/API" target="_blank" rel="external">python API</a>)，并非一个可以扩展的框架。</p>
@@ -193,14 +188,12 @@
 <p>价格: Personal $39.95/year,  Premium $59.95/year</p>
 <p><strong><em>VID Blaster</em></strong></p>
 <p>功能和Wirecast类似。</p>
-<p>####开源产品####</p>
-<p><strong><em>Open Broadcast Software</em></strong></p>
+<h4 id="开源产品"><a href="#开源产品" class="headerlink" title="开源产品"></a>开源产品</h4><p><strong><em>Open Broadcast Software</em></strong></p>
 <p>OBS默认支持的<a href="https://github.com/jp9000/OBS/wiki/Built-in-Sources" target="_blank" rel="external">输入源</a>比较有限，但可以通过plugin方式进行扩展。OBS也支持多个场景(<a href="https://jp9000.github.io/OBS/general/scenes.html" target="_blank" rel="external">Scene</a>)，标题编辑，也支持多种不同的Streaming平台，如<a href="https://twitchtips.com/obs-setup/" target="_blank" rel="external">TWITCH</a>, <a href="https://www.youtube.com/watch?v=dD0Z9VylyU8" target="_blank" rel="external">YouTube</a>。OBS原先只支持<a href="https://github.com/jp9000/OBS" target="_blank" rel="external">Windows</a>，新版本可以<a href="https://github.com/jp9000/obs-studio" target="_blank" rel="external">跨平台</a>，但还不完善。</p>
 <p>API: 提供plugin接口</p>
 <p><strong><em>WebcamStudio</em></strong></p>
 <p>(WebcamStudio)[<a href="https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。" target="_blank" rel="external">https://code.google.com/p/webcamstudio/]功能和OBS类似，但只运行在linux平台，且现在已经无人维护。</a></p>
-<p>###Streaming服务器和cloud平台</p>
-<p><strong><em>1. WOWZA</em></strong></p>
+<h3 id="Streaming服务器和cloud平台"><a href="#Streaming服务器和cloud平台" class="headerlink" title="Streaming服务器和cloud平台"></a>Streaming服务器和cloud平台</h3><p><strong><em>1. WOWZA</em></strong></p>
 <p>产品线完整，包含Server和Cloud。支持所有主流的协议(HLS, HDS等)。输入源支持的也非常丰富，并且支持比较多的合作厂商的设备。输入源支持Push和Pull两种方式。</p>
 <p><a href="http://www.wowza.com/products/streaming-cloud/features" target="_blank" rel="external">Streaming Cloud</a>现在的API未公开，但看起来操作应该不会超出UI提供的功能。</p>
 <p><a href="http://www.wowza.com/products/streaming-engine" target="_blank" rel="external">Streaming Server</a>非常成熟, <a href="http://www.wowza.com/resources/WowzaStreamingEngine_ServerSideAPI.pdf" target="_blank" rel="external">API</a>非常丰富(复杂)。Server的部署和分发也提供相应的<a href="http://www.wowza.com/products/streaming-engine/deployment-options" target="_blank" rel="external">支持</a>。</p>
@@ -213,11 +206,8 @@
 <p>Youtube也仅仅提供Cloud服务，没有Server。</p>
 <p><strong><em>5. JWPlayer</em></strong></p>
 <p>原先只是flash播放器，现在也在提供cloud服务。</p>
-<p>##产品架构选型</p>
-<p>###需求分析</p>
-<p>能动态的根据用户相关的数据来实时生成广告版。现有的支持音视频编辑的软件可以mix多路视频，但这些都是在客户端发布视频之前做的，而用户相关的数据只有服务器端才有，所以需要在服务器端做mix。</p>
-<p>##功能</p>
-<p><strong>Dynamic Streaming</strong></p>
+<h2 id="产品架构选型"><a href="#产品架构选型" class="headerlink" title="产品架构选型"></a>产品架构选型</h2><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>能动态的根据用户相关的数据来实时生成广告版。现有的支持音视频编辑的软件可以mix多路视频，但这些都是在客户端发布视频之前做的，而用户相关的数据只有服务器端才有，所以需要在服务器端做mix。</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p><strong>Dynamic Streaming</strong></p>
 <p><strong>HTTP scalability</strong></p>
 <p><strong>HTTP caching</strong></p>
 <p><strong>Trickplay</strong></p>
@@ -228,11 +218,9 @@
 <p><strong>Network DVR(Digital Video Recorder)</strong></p>
 <p><strong>Stream recording</strong></p>
 <p><strong>DRM(Digital Rights Management)</strong></p>
-<p>##客户端</p>
-<p><strong>JW Player</strong></p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p><strong>JW Player</strong></p>
 <p><strong>Flowplayer</strong></p>
-<p>##协议</p>
-<p><strong>UDP</strong></p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p><strong>UDP</strong></p>
 <p><strong>TCP</strong></p>
 <p><strong>RTSP/RTP</strong></p>
 <p><strong>HTTP</strong></p>
@@ -242,14 +230,12 @@
 <p><strong>MPEG-TS</strong>: MPEG-2 Transport Streams，多用于IPTV</p>
 <p><strong>MPEG-DASH Streaming</strong>: Moving Picture Experts Group Dynamic Adaptive Streaming over HTTP</p>
 <p><strong>MPD</strong>: Media Presenation Descriptino</p>
-<p>##名词解析</p>
-<p><strong>ABR</strong>: Adaptive bitrate streaming通过监测下行带宽的变化或用户的操作来自动适应带宽变化或屏幕大小变化。为了保证平滑的切换不同质量的视频，ABR对encoder是有一定要求的，需要编码的时候不同质量的关键帧能同步。</p>
+<h2 id="名词解析"><a href="#名词解析" class="headerlink" title="名词解析"></a>名词解析</h2><p><strong>ABR</strong>: Adaptive bitrate streaming通过监测下行带宽的变化或用户的操作来自动适应带宽变化或屏幕大小变化。为了保证平滑的切换不同质量的视频，ABR对encoder是有一定要求的，需要编码的时候不同质量的关键帧能同步。</p>
 <p><strong>SMIL</strong>: Synchronized Multimedia Integration Language用来描述视频源可用的bitrate和size等配置，client可以根据这些配置来选择不同质量的视频。Mobile客户端和Desktop客户端一般会有不同的配置，不同的平台也有特定的要求（iOS bitrate不超过64 kbps)。</p>
 <p><strong>DASH</strong>: Dynamic Adaptive Streaming over HTTP</p>
 <p><strong>HbbTV</strong>: Hybrid Broadcast Broadband TV</p>
 <p><strong>Container</strong>: 容器就是把编码器生成的多媒体内容（视频，音频，字幕，章节信息等）混合封装在一起的标准。容器使得不同多媒体内容同步播放变得很简单，而容器的另一个作用就是为多媒体内容提供索引，也就是说如果没有容器存在的话一部影片你只能从一开始看到最后，不能拖动进度条（当然这种情况下有的播放器会话比较长的时间临时创建索引），而且如果你不自己去手动另外载入音频就没有声音。</p>
-<p>##参考</p>
-<ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="http://info.wowza.com/abr-white-paper" target="_blank" rel="external">Adaptive Bitrate Streaming with Wowza Streaming Engine</a> </li>
 <li><a href="http://info.wowza.com/mediacache-white-paper" target="_blank" rel="external">Media Cache White Paper</a></li>
 <li><a href="http://info.wowza.com/tv-anywhere-white-paper" target="_blank" rel="external">TV Anywhere White Paper</a></li>
