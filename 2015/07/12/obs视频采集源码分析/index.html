@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="null">
+<html>
     
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
@@ -8,216 +7,155 @@
     <meta name="generator" content="Hexo">
     <title>obs视频采集源码分析 - Hexo</title>
     <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Hexo">
+    <link rel="icon" href="/assets/images/null">
     
-    
-    
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-    
-    <meta name="description" content="#obs视频采集源码分析
-obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。
-相关的文件:
-
-plugins/av-capture.m
-plugins/AVCaptureInputPort+PreMavericksCompat.h
-libobs/obs.c
-libobs/media-io/video-io.c
-libobs/media-io/video-frame.">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="obs视频采集源码分析">
-<meta property="og:url" content="http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#obs视频采集源码分析
-obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。
-相关的文件:
-
-plugins/av-capture.m
-plugins/AVCaptureInputPort+PreMavericksCompat.h
-libobs/obs.c
-libobs/media-io/video-io.c
-libobs/media-io/video-frame.">
-<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/hhygcy/EntryImages/20081125/nv12.png">
-<meta property="og:image" content="http://img1.51cto.com/attachment/201104/202455202.png">
-<meta property="og:updated_time" content="2016-04-13T22:06:48.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="obs视频采集源码分析">
-<meta name="twitter:description" content="#obs视频采集源码分析
-obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。
-相关的文件:
-
-plugins/av-capture.m
-plugins/AVCaptureInputPort+PreMavericksCompat.h
-libobs/obs.c
-libobs/media-io/video-io.c
-libobs/media-io/video-frame.">
-    
-    
-        
-    
-    
-    
-    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
     
     <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-27vrduj1jopliavvnzi7ibndpmbvg7lzo4a2uswrsi4m5vwauf2qi8s1v3or.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
     <!--STYLES END-->
-    
     
 </head>
 
     <body>
         <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
     <h1 class="header-title">
-        <a class="header-title-link" href="/ ">Hexo</a>
+        <a class="header-title-link" href="http://jiantaofu.github.io">Hexo</a>
     </h1>
     
-        
-            <a  class="header-right-picture "
-                href="/#about">
-        
-        
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
         </a>
     
 </header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
     
     
         <ul class="sidebar-buttons">
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/ "
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
-                    <span class="sidebar-button-desc">首頁</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/all-categories"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
-                    <span class="sidebar-button-desc">分類</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/all-tags"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
-                    <span class="sidebar-button-desc">標籤</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/all-archives"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
-                    <span class="sidebar-button-desc">所有文章</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link st-search-show-outputs"
-                         href="/#search"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
-                    <span class="sidebar-button-desc">搜尋</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/#about"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
-                    <span class="sidebar-button-desc">關於</span>
-                </a>
-        </li>
-        
-    </ul>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
     
         <ul class="sidebar-buttons">
-        
-    </ul>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
     
         <ul class="sidebar-buttons">
-        
-            <li class="sidebar-button">
-                
-                    <a  class="sidebar-button-link "
-                         href="/atom.xml"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
-                    <span class="sidebar-button-desc">Atom</span>
-                </a>
-        </li>
-        
-    </ul>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
     
 </nav>
 
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+            <div id="main">
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
+        <div class="post-header main-content-wrap">
     
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title" itemprop="headline">
-            obs视频采集源码分析
-        </h1>
+        <h1 class="post-title" itemprop="headline">obs视频采集源码分析</h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Sun Jul 12 2015 12:00:06 GMT-0700">
-	
-		    Jul 12, 2015
-    	
+    <time  itemprop="datePublished" content="Sun Jul 12 2015 12:00:06 GMT-0700">
+        Jul 12, 2015
     </time>
     
 </div>
 </div>
     
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <p>#obs视频采集源码分析</p>
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>#obs视频采集源码分析</p>
 <p>obs采用的plugin的方式来进行视频采集，下面以OSX下的视频采集插件为示例。</p>
 <p>相关的文件:</p>
 <ul>
@@ -283,10 +221,11 @@ receive_video -&gt; do_encode
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> VIDEO_FORMAT_YVYU:</span><br><span class="line"><span class="keyword">case</span> VIDEO_FORMAT_YUY2:</span><br><span class="line"><span class="keyword">case</span> VIDEO_FORMAT_UYVY:</span><br><span class="line">        size = width * height * <span class="number">2</span>;</span><br><span class="line">        ALIGN_SIZE(size, alignment);</span><br><span class="line">        frame-&gt;data[<span class="number">0</span>] = bmalloc(size);</span><br><span class="line">        frame-&gt;linesize[<span class="number">0</span>] = width*<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 <p>从上面的内存结构可以看出存储需要的字节数时width <em> height </em> 2，data[0]指向的就是frame开始的存储地址，linesize[0]是Plane跳到下一个行的字节数，从上图可以看出这个是width个字节。</p>
 
+        
             
-        </div>
+        
     </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
+    <div class="post-footer main-content-wrap">
         
         <div class="post-actions-wrap">
     <nav>
@@ -296,54 +235,50 @@ receive_video -&gt; do_encode
                     <a class="post-action-btn btn btn--default tooltip--top" href="/2015/08/13/obs源码分析/"  data-tooltip="obs源码分析">
                 
                     <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/06/DASH标准/" data-tooltip="DASH标准">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </li>
         </ul>
     </nav>
     <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
         
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
     </ul>
 </div>
 
 
         
-            
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
         
     </div>
 </article>
@@ -358,7 +293,7 @@ receive_video -&gt; do_encode
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                <div class="post-bottom-bar">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -367,110 +302,91 @@ receive_video -&gt; do_encode
                     <a class="post-action-btn btn btn--default tooltip--top" href="/2015/08/13/obs源码分析/"  data-tooltip="obs源码分析">
                 
                     <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/06/DASH标准/" data-tooltip="DASH标准">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </li>
         </ul>
     </nav>
     <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
-        <li class="post-action hide-xs">
+        <li class="post-action">
             <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
         
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
     </ul>
 </div>
 
 
                 </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-    <ul class="share-options">
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
-                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
-                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2015/07/12/obs视频采集源码分析/">
-                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
             
         </div>
-        
-
-
-<div id="about">
+        <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-remove"></i>
         </div>
         
-            <h4 id="about-card-name">Jiantao Fu</h4>
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
         
-            <h5 id="about-card-bio"><p>author.bio</p>
-</h5>
+            <h4 id="about-card-name">Jiantao Fu</h4>
         
         
             <h5 id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
-
+                Software Engineer
             </h5>
         
         
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
     </div>
 </div>
-
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
     </body>
     <!--SCRIPTS-->
-<script src="/assets/js/scrip-tu4ziscb5jrkjxubeugdgizktyuugflfq5jvgz4agzzmwifuq01g1lmq8giw.min.js" type="text/javascript"></script>
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
 <!--SCRIPTS END-->
 
-    
-
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
 
 
 </html>
