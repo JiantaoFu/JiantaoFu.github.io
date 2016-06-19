@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiantao&#39;s Blog">
+    <title>RS-FEC的基础-有限域 - Jiantao&#39;s Blog</title>
+    <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Jiantao&#39;s Blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://jiantaofu.github.io">Jiantao&#39;s Blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+</nav>
+
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">RS-FEC的基础-有限域</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Sun Jun 19 2016 14:07:56 GMT-0700">
+        Jun 19, 2016
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>有限域可能是RS-FEC中最难懂的部分了，其实就数学要求而言，高中知识也许就足矣，但是现有的很多介绍RS-FEC的文章对这块知识的介绍比较简略，很难有比较系统的理解。为了学习有限域，是有必要找本数学书来看看，比如冯克勤的&lt;&lt;走向数学从书17 - 有限域&gt;&gt;，看完第一章有限域就可以了，45页纸，虽然不比看小说那么轻松，但应该不存在哪里有什么看不懂的地方，因为确实只需要高中的数学知识。这篇文章的目的不是去重复书本的内容，而是综述性的介绍一些来龙去脉和知识点的关联，类似一个读书笔记，另外还会结合”A Tutorial on Reed-Solomon Coding for Fault-Tolerance in RAID-like Systems”这篇论文来介绍一下具体的实现。</p>
+<p>有限域从名称来来看，一个是有限的元素，另外一个是域，域可以理解为在元素构成的集合上可以做加减乘除的运算，并且满足结合律，交换律和分配律，还有满足0元素和1元素的相关特性（具体定义见书14页）。FEC如果是在无限域上运算，运算可能会溢出，精度也会有损失，有限域上因为元素有限，数值的长度可以固定，不存在溢出的情况，而且不存在会有浮点运算之类的精度问题，另外还有个好处在后面具体的知识介绍和剧透实现可以看到，有限域上的运算性能相对无限域在理论上（乘法除法可以转换为加减法，本质上类似在实数域我们也有指数和对数运算，但这个表相比元素无限个数的实数域会小很多）和实现上都可以有很大的优化（因为个数有限，可以预先计算好，运算直接查表来的到结果）。</p>
+<h1 id="P元有限域"><a href="#P元有限域" class="headerlink" title="P元有限域"></a>P元有限域</h1><p><strong>对于每个素数p，可以构作出一个p元有限域Fp</strong></p>
+<h2 id="p元有限域的构建"><a href="#p元有限域的构建" class="headerlink" title="p元有限域的构建"></a>p元有限域的构建</h2><p>为什么要是素数? 证明之前先举个直观的例子。取模操作大家都比较熟悉了，对于m为&gt;=2的正整数，a是整数，定义如下的一个集合，集合里面的元素[a]表示模m与a同余的所有整数构成的集合(集合里面的元素也是集合), [a]叫做模m的一个同余类。那这样就一共存在m个同余类: [0], [1], … [m-1]。</p>
+<p>然后定义如下操作（对，是定义，不要去纠结操作的具体的现实意义，很多理论是到了几百年后才有应用场景的，有限域理论在三百多年前就出现了，到了信息时代才得到应用。不是说没有，而是说重点不在那。其实这些定义是可以根据上面的同余类的定义推导出来的）:</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[a]</span> + <span class="string">[b]</span> = <span class="string">[a+b]</span></span><br><span class="line"><span class="string">[a]</span> - <span class="string">[b]</span> = <span class="string">[a-b]</span></span><br><span class="line"><span class="string">[a]</span> . <span class="string">[b]</span> = <span class="string">[a.b]</span></span><br></pre></td></tr></table></figure>
+<p>可以证明基于上面的定义，加法和乘法满足交换律，结合律，分配律，而且[0]和[1]的作用和我们熟悉的有限域下一样。</p>
+<p>其次对于加法和减法，两者互为逆运算</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">[a]</span> + <span class="comment">[b]</span> = <span class="comment">[c]</span> &lt;=&gt; <span class="comment">[c]</span> - <span class="comment">[a]</span></span><br><span class="line">                  = <span class="comment">[<span class="comment">[a]</span> + <span class="comment">[b]</span>]</span> - <span class="comment">[a]</span></span><br><span class="line">                  = <span class="comment">[<span class="comment">[a]</span>]</span> + <span class="comment">[<span class="comment">[b]</span>]</span> - <span class="comment">[a]</span></span><br><span class="line">                  = <span class="comment">[a]</span> + <span class="comment">[b]</span> - <span class="comment">[a]</span> = <span class="comment">[b]</span></span><br></pre></td></tr></table></figure>
+<p>剩下最后一点有待确认: 是否存在乘法的逆运算，即除法运算。上面没有类似加减乘法来定义<code>[a]/[b] = [a/b]</code>，因为首先a/b这个运算对于整数而言就没有意义，因为结果不一定是整数。根据同余类概念的定义<code>[x]=[a]/[b] ([b]!=[0])</code>相当于求解同余方程<code>b.x=a(mod)m</code>。对于乘法的逆运算，应该是对每个同余类[b]，存在同余类[c]，是的<code>[b].[c] = [1]</code></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[a]</span>/<span class="string">[b]</span> = <span class="string">[a]</span>.<span class="string">[1]</span>/<span class="string">[b]</span> = <span class="string">[a]</span>.<span class="string">[b]</span>.<span class="string">[c]</span>/<span class="string">[b]</span> = <span class="string">[a]</span>.<span class="string">[c]</span></span><br></pre></td></tr></table></figure>
+<p>例如对于m=4，对于[2]，就找不到对应的[a]使得[a].[2]=[1]。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[0]</span>.<span class="string">[2]</span> = <span class="string">[0]</span></span><br><span class="line"><span class="string">[1]</span>.<span class="string">[2]</span> = <span class="string">[2]</span></span><br><span class="line"><span class="string">[2]</span>.<span class="string">[2]</span> = <span class="string">[0]</span></span><br><span class="line"><span class="string">[3]</span>.<span class="string">[2]</span> = <span class="string">[2]</span></span><br></pre></td></tr></table></figure>
+<p>具体的证明见书中第7页引理1.1.6：设m&gt;=2, [a]为模m的同余类，则存在同余类[b]使得[a].[b] = [1]的充要条件是a,m互素。并且当a,m互素时，只有一个同余类[b]使得[a].[b]=[1]。</p>
+<p>由引理知，对于非素数的m，总可以找到一个正因子d&gt;1(d和m不是互素关系)，也就是说[d]的逆元素不存在。</p>
+<p>所以上面也就证明了最开始的结论: <strong>对于每个素数p，可以构作出一个p元有限域Fp</strong></p>
+<p>对于p=5，可以有如下的F5的乘法表:</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">      <span class="string">[0]</span>  <span class="string">[1]</span>  <span class="string">[2]</span>  <span class="string">[3]</span>  <span class="string">[4]</span></span><br><span class="line">     -------------------------</span><br><span class="line"><span class="string">[0]</span> | <span class="string">[0]</span>  <span class="string">[0]</span>  <span class="string">[0]</span>  <span class="string">[0]</span>  <span class="string">[0]</span></span><br><span class="line">    |</span><br><span class="line"><span class="string">[1]</span> | <span class="string">[0]</span>  <span class="string">[1]</span>  <span class="string">[2]</span>  <span class="string">[3]</span>  <span class="string">[4]</span></span><br><span class="line">    |</span><br><span class="line"><span class="string">[2]</span> | <span class="string">[0]</span>  <span class="string">[2]</span>  <span class="string">[4]</span>  <span class="string">[1]</span>  <span class="string">[4]</span></span><br><span class="line">    |</span><br><span class="line"><span class="string">[3]</span> | <span class="string">[0]</span>  <span class="string">[3]</span>  <span class="string">[1]</span>  <span class="string">[4]</span>  <span class="string">[2]</span></span><br><span class="line">    |</span><br><span class="line"><span class="string">[4]</span> | <span class="string">[0]</span>  <span class="string">[4]</span>  <span class="string">[4]</span>  <span class="string">[2]</span>  <span class="string">[1]</span></span><br></pre></td></tr></table></figure>
+<h2 id="p元有限域的特性"><a href="#p元有限域的特性" class="headerlink" title="p元有限域的特性"></a>p元有限域的特性</h2><p>后面为了书写方便，有限域内的数会省略掉”[]”。下面是一些p元有限域的一些重要的特性:</p>
+<p><strong>Fp中的每个元素a，均有a^^p = a，如果a!=0，则a^^(p-1) = 1</strong></p>
+<p>例如: 3^^4 = 3.3.3.3 = 4.3.3 = 2.3 = 1</p>
+<p>证明: 因为共有p个不同的元素，所以当a!=0时，a, 2a, 3a, (p-1)a也分别是p个不同的元素, 所以1.2 … p-1 = a. 2a. 3a. (p-1)a，消去1.2 … p-1，得到a^^(p-1) = 1。</p>
+<p>Fp中非0元素a的阶定义为最小的正整数n，有a^^n = 1。因为上面已经证明了a^^(p-1)=1，所以n一定是存在的。a的阶n一定是p-1的因子。</p>
+<p>另外，如果Fp中存在元素g，且g的阶是p-1，那么1=g^^0, g^^1, g^^(p-2)分别对于p-1个不同的元素。（见11页“注纪”里的证明），也就是说非零元素都可以由g来生成，这个就称为本原元素，有了这个，Fp的数学结构就简单了。</p>
+<p>对于上面p=5的例子, 3就是一个本原元素:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>^^<span class="number">0</span> = <span class="number">1</span></span><br><span class="line"><span class="number">3</span>^^<span class="number">1</span> = <span class="number">3</span></span><br><span class="line"><span class="number">3</span>^^<span class="number">2</span> = <span class="number">3.3</span> = <span class="number">4</span></span><br><span class="line"><span class="number">3</span>^^<span class="number">3</span> = <span class="number">3.3</span><span class="number">.3</span> = <span class="number">4.3</span> = <span class="number">2</span></span><br><span class="line"><span class="number">3</span>^^<span class="number">4</span> = <span class="number">3.3</span><span class="number">.3</span><span class="number">.3</span> = <span class="number">4.3</span><span class="number">.3</span> = <span class="number">2.3</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>有了本原元素指数方式来表示每一个元素，乘法运算和除法运算就可以转换为加法和减法运算了。</p>
+<p>问题到这里并没有结束，虽然我们知道对于素数p存在p元有限域，但给定任意一个素数，除了穷举法，我们没办法快速找出其本原元素。如果大家看过RS-FEC相关的文献，就会发现里面有用到“生成多项式”，后面将介绍怎么会和多项式有关系的。</p>
+<h1 id="域的基本知识"><a href="#域的基本知识" class="headerlink" title="域的基本知识"></a>域的基本知识</h1><h2 id="域的特征"><a href="#域的特征" class="headerlink" title="域的特征"></a>域的特征</h2><p>用e来表示域中的1元素，那么如果存在正整数n，有ne=0, 则称域的特征为n，否则，如果不存在，则称特征为0。有理数，实数，复数这些都是特征为0的域，而p元有限域的特征这是p（<code>p.[1] = [p] = 0</code>）。<strong>特征要么为0，要么是素数, 有理数域和p元有限域是一批最小的域，每个域或者包含有理数域（当特征为0时），或者包含某个p元有限域Fp（当特征为p时）</strong>。</p>
+<h2 id="域上的多项式"><a href="#域上的多项式" class="headerlink" title="域上的多项式"></a>域上的多项式</h2><p>重根判别法</p>
+<h1 id="任意有限域"><a href="#任意有限域" class="headerlink" title="任意有限域"></a>任意有限域</h1><h2 id="元素个数"><a href="#元素个数" class="headerlink" title="元素个数"></a>元素个数</h2><p>有限域F的元素个数必为p^^n，其中p为素数, n&gt;=1。由前面可知，Fp是F的一个子域，利用最小生成集，可以将F中的元素表示为<code>x = a1.x1 + ... + an.xn</code>，可以证明对于任意的x，ai系数是唯一的。ai的组合共有p^^n个，所以共有p^^n个元素。</p>
+<h2 id="存在性"><a href="#存在性" class="headerlink" title="存在性"></a>存在性</h2><p>对于每个素数幂p^^n，均存在p^^n元有限域(多项式<code>x^^(p^^n)-x</code>的在Fp的代数闭包中的所有根形成p^^n元有限域)。这里的证明用到了重根判别法，然后证明根构成一个域。</p>
+<h2 id="唯一性"><a href="#唯一性" class="headerlink" title="唯一性"></a>唯一性</h2><p>对于Fp的代数闭包F，其中恰好由一个p^^n元有限域。</p>
+<p>令q=p^^n，F中非零元素为x[1], …, x[q-1]（这里借用数组的[]来表示下标），每个元素乘以非零元素a，由x[1]. … . x[q-1] = a^^(q-1).x[1]. … .x[q-1]。则由a^^(q-1)=1，即a^^q=a。从而每个元素都是<code>f(x) = x^^q-x = x^^(p^^n)-x</code>的根，且只有p^^n个根，从而证明了唯一性。</p>
+<h2 id="本原元素的存在性"><a href="#本原元素的存在性" class="headerlink" title="本原元素的存在性"></a>本原元素的存在性</h2><p>q=p^^n，q-1阶元素叫做q元域Fq的本原元素。有了本原元素后，做乘法操作就很方便了。但加法应该怎么做呢？</p>
+<h2 id="根据Fp中的n次不可约首一多项式f-x-构建有限域"><a href="#根据Fp中的n次不可约首一多项式f-x-构建有限域" class="headerlink" title="根据Fp中的n次不可约首一多项式f(x)构建有限域"></a>根据Fp中的n次不可约首一多项式f(x)构建有限域</h2><p>这里的n次不可约首一多项式f(x)，也就是RS-FEC文献中的生成多项式。设a为f(x)的一个根，那么集合</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S = &#123;c[<span class="number">0</span>].a^^(n-<span class="number">1</span>) + c[<span class="number">1</span>].a^^(n-<span class="number">2</span>) + ... + c[n-<span class="number">1</span>]</span><br><span class="line">其中c[<span class="number">0</span>], ..., c[n-<span class="number">1</span>] 都是Fp中的元素</span><br></pre></td></tr></table></figure>
+<p>是一个q元域，q=p^^n。<br>这里的证明思路是先证明S中有p^^n个不同的元素，其次再根据域的定义来证明S中的元素上的操作满足定义。</p>
+<p>有了这个结论后，加法操作就是多项式的加法操作（系数属于Fp）。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>F3[x]中的不可约多项式<code>f(x)=x^^2 + x + 2</code>（如果可约，那一定会有一次多项式因子，使得其在F3中有根，但f(0)=2, f(1)=1, f(2)=2，都不为0，所以f(x)不可约）。根据上面的定理，设a为f(x)在扩域的一个根，则有<code>a^^2 + a + 2 = 0 &lt;=&gt; a^^2 = 2a + 1</code>，那么对于n=2, p=3, q=p^^n=3^^2=9元有限域F9有如下9个元素:</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S = &#123;c[<span class="number">0</span>].a + c[<span class="number">1</span>]&#125; = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, a, a+<span class="number">1</span>, a+<span class="number">2</span>, <span class="number">2</span>a, <span class="number">2</span>a+<span class="number">1</span>, <span class="number">2</span>a+<span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>此外可以看到a是8阶元素，即是F9的本原元素:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a^^<span class="number">2</span> = <span class="number">2</span>a + <span class="number">1</span></span><br><span class="line">a^^<span class="number">3</span> = (<span class="number">2</span>a + <span class="number">1</span>).a = <span class="number">2</span>a^^<span class="number">2</span> + a = <span class="number">2</span>(<span class="number">2</span>a + <span class="number">1</span>) + a = <span class="number">2</span>a + <span class="number">2</span></span><br><span class="line">a^^<span class="number">4</span> = (<span class="number">2</span>a + <span class="number">2</span>).a = <span class="number">2</span>a^^<span class="number">2</span> + <span class="number">2</span>a = <span class="number">2</span>(<span class="number">2</span>a + <span class="number">1</span>) + <span class="number">2</span>a = <span class="number">2</span></span><br><span class="line">a^^<span class="number">5</span> = <span class="number">2</span>a</span><br><span class="line">a^^<span class="number">6</span> = <span class="number">2</span>a^^<span class="number">2</span> = <span class="number">2</span>(<span class="number">2</span>a + <span class="number">1</span>) = a + <span class="number">2</span></span><br><span class="line">a^^<span class="number">7</span> = (a + <span class="number">2</span>).a = a^^<span class="number">2</span> + <span class="number">2</span>a = <span class="number">2</span>a + <span class="number">1</span> + <span class="number">2</span>a = a + <span class="number">1</span></span><br><span class="line">a^^<span class="number">8</span> = (a + <span class="number">1</span>).a = a^^<span class="number">2</span> + a = <span class="number">2</span>a + <span class="number">1</span> + a = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>所以F9中的元素有如下两种表示方式，纪c[0].a + c[1]为(c[0], c[1]):</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">0</span> = (<span class="number">0</span>, <span class="number">0</span>)       <span class="number">1</span> = (<span class="number">0</span>, <span class="number">1</span>)       a = (<span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">a^^<span class="number">2</span> = (<span class="number">2</span>, <span class="number">1</span>)    a^^<span class="number">3</span> = (<span class="number">2</span>, <span class="number">2</span>)    a^^<span class="number">4</span> = (<span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line">a^^<span class="number">5</span> = (<span class="number">2</span>, <span class="number">0</span>)    a^^<span class="number">6</span> = (<span class="number">1</span>, <span class="number">2</span>)    a^^<span class="number">7</span> = (<span class="number">1</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>在计算乘法的时候可以用左边的表达方式操作:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span>a + <span class="number">1</span>).(a + <span class="number">2</span>) = (<span class="number">2</span>, <span class="number">1</span>).(<span class="number">1</span>, <span class="number">2</span>) = a^^<span class="number">2</span> . a^^<span class="number">6</span> = a^^<span class="number">8</span> = <span class="number">1</span> = (<span class="number">0</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>加法可以用右边的表达方式来操作:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a^^<span class="number">3</span> + a^^<span class="number">5</span> = (<span class="number">2</span>, <span class="number">2</span>) + (<span class="number">2</span>, <span class="number">0</span>) = (<span class="number">1</span>, <span class="number">2</span>) = a^^<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>实现中都会取p=2, 对应的n次不可约多项式分别为:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">2</span>:    x^^<span class="number">2</span> + x + <span class="number">1</span></span><br><span class="line">n = <span class="number">4</span>:    x^^<span class="number">4</span> + x + <span class="number">1</span></span><br><span class="line">n = <span class="number">8</span>:    x^^<span class="number">8</span> + x^^<span class="number">4</span> + x^^<span class="number">3</span> + x^^<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">n = <span class="number">16</span>:   x^^<span class="number">16</span> + x^^<span class="number">12</span> + x^^<span class="number">3</span> + x + <span class="number">1</span></span><br><span class="line">n = <span class="number">32</span>:   x^^<span class="number">32</span> + x^^<span class="number">22</span> + x^^<span class="number">2</span> + x + <span class="number">1</span></span><br><span class="line">n = <span class="number">64</span>:   x^^<span class="number">64</span> + x^^<span class="number">4</span> + x^^<span class="number">3</span> + x + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>下面以n=4为例，GF(p^^n) = GF(2^^4) = 16，即16元有限域，设a是<code>x^^4 + x + 1</code>的一个解，即有<code>a^^4 = a + 1</code>，下面可用看的a也为本原元素（a^^15＝1，只有本原元素才能生成所有的非零元素，也才能用于指数方式的表达），16元有限域的元素就仅仅限于前16项，a^^15和a^^0是同一个元素。</p>
+<table>
+<thead>
+<tr>
+<th>指数方式</th>
+<th style="text-align:center">多项式方式</th>
+<th style="text-align:right">二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:right">0000</td>
+</tr>
+<tr>
+<td>a^^0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:right">0001</td>
+</tr>
+<tr>
+<td>a^^1</td>
+<td style="text-align:center">a</td>
+<td style="text-align:right">0010</td>
+</tr>
+<tr>
+<td>a^^2</td>
+<td style="text-align:center">a^^2</td>
+<td style="text-align:right">0100</td>
+</tr>
+<tr>
+<td>a^^3</td>
+<td style="text-align:center">a^^3</td>
+<td style="text-align:right">1000</td>
+</tr>
+<tr>
+<td>a^^4</td>
+<td style="text-align:center">a + 1</td>
+<td style="text-align:right">0011</td>
+</tr>
+<tr>
+<td>a^^5</td>
+<td style="text-align:center">a^^2 + a</td>
+<td style="text-align:right">0110</td>
+</tr>
+<tr>
+<td>a^^6</td>
+<td style="text-align:center">a^^3 + a^^2</td>
+<td style="text-align:right">1100</td>
+</tr>
+<tr>
+<td>a^^7</td>
+<td style="text-align:center">a^^3 + a + 1</td>
+<td style="text-align:right">1011</td>
+</tr>
+<tr>
+<td>a^^8</td>
+<td style="text-align:center">a^^2 + 1</td>
+<td style="text-align:right">0101</td>
+</tr>
+<tr>
+<td>a^^9</td>
+<td style="text-align:center">a^^3 + a</td>
+<td style="text-align:right">1010</td>
+</tr>
+<tr>
+<td>a^^10</td>
+<td style="text-align:center">a^^2 + a +1</td>
+<td style="text-align:right">0111</td>
+</tr>
+<tr>
+<td>a^^11</td>
+<td style="text-align:center">a^^3 + a^^2 + a</td>
+<td style="text-align:right">1110</td>
+</tr>
+<tr>
+<td>a^^12</td>
+<td style="text-align:center">a^^3 + a^^2 + a + 1</td>
+<td style="text-align:right">1111</td>
+</tr>
+<tr>
+<td>a^^13</td>
+<td style="text-align:center">a^^3 + a^^2 + 1</td>
+<td style="text-align:right">1101</td>
+</tr>
+<tr>
+<td>a^^14</td>
+<td style="text-align:center">a^^3 + 1</td>
+<td style="text-align:right">1001</td>
+</tr>
+<tr>
+<td>a^^15</td>
+<td style="text-align:center">1</td>
+<td style="text-align:right">0001</td>
+</tr>
+</tbody>
+</table>
+<p>上面可以很清楚的看到二进制方式只是多项式方式略去a后的一种缩写的表示方式而已。而指数方式则是根据<code>a^^4 = a + 1</code>带入运算的到的:</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">a</span>^^<span class="number">4</span> = <span class="literal">a</span> + <span class="number">1</span></span><br><span class="line"><span class="literal">a</span>^^<span class="number">5</span> = <span class="literal">a</span>^^<span class="number">2</span> + <span class="literal">a</span></span><br><span class="line"><span class="literal">a</span>^^<span class="number">6</span> = <span class="literal">a</span>^^<span class="number">3</span> + <span class="literal">a</span>^^<span class="number">2</span></span><br><span class="line"><span class="literal">a</span>^^<span class="number">7</span> = <span class="literal">a</span>^^<span class="number">4</span> + <span class="literal">a</span>^^<span class="number">3</span> = <span class="literal">a</span>^^<span class="number">3</span> + <span class="literal">a</span> + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>如果要讲上面的计算过程转换为代码:</p>
+<p>a^^7实际上可以a^^6 . a，也就是a^^6的二进制方式左移一位，从1100(<code>a^^3 + a^^2</code>)变成11000(<code>a^^4 + a^^3</code>)，因为<code>a^^4 + a + 1 = 0</code>，任何元素加上0不变，所以<code>a^^4 + a^^3 + a^^4 + a + 1</code>，转换为XOR操作(11000 ^ 10011 = 01011)，即<code>a^^3 + a + 1</code>。</p>
+<p>可以看到加法操作其实也就是系数为F2的多项式加法，也就是系数的XOR运算，乘法可以先转换为指数方式，然后做（模2^^n-1=15）加法，然后转换为多项式方式。</p>
+<p>上面的过程转换为c语言的实现，首先是要生成两个表:</p>
+<ul>
+<li>gflog用来将“多项式方式 =&gt; 指数方式”（根据二进制方式，范围从1到2^^n-1，查找对应的指数），</li>
+<li>gfilog用来将“指数方式 =&gt; 多项式方式”（根据指数方式，范围从0到2^^n-2，查找对应的二进制方式）。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> prim_poly_4 = <span class="number">023</span>; <span class="comment">//x^^4 + x + 1 =&gt; 0b10011 = 023</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> prim_poly_8 = <span class="number">0435</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> prim_poly_16 = <span class="number">0210013</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> * gflog, * gfilog;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setup_tables</span><span class="params">(<span class="keyword">int</span> w)</span></span><br><span class="line"></span>&#123;            </span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> b, <span class="built_in">log</span>, x_to_w, prim_poly;</span><br><span class="line">         </span><br><span class="line">    <span class="keyword">switch</span> (w) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">            prim_poly = prim_poly_4;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">            prim_poly = prim_poly_8;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> <span class="number">16</span>:</span><br><span class="line">            prim_poly = prim_poly_16;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    x_to_w = <span class="number">1</span> &lt;&lt; w;</span><br><span class="line">    gflog = (<span class="keyword">unsigned</span> <span class="keyword">short</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">short</span>) * x_to_w);</span><br><span class="line">    gfilog = (<span class="keyword">unsigned</span> <span class="keyword">short</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">short</span>) * x_to_w);</span><br><span class="line">         </span><br><span class="line">    b = <span class="number">1</span>; </span><br><span class="line">    <span class="comment">// b - poly form, log - exp form</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">log</span> = <span class="number">0</span>; <span class="built_in">log</span> &lt; x_to_w - <span class="number">1</span>; ++<span class="built_in">log</span>) &#123;</span><br><span class="line">        gflog[b] = (<span class="keyword">unsigned</span> <span class="keyword">short</span>) <span class="built_in">log</span>;</span><br><span class="line">        gfilog[<span class="built_in">log</span>] = (<span class="keyword">unsigned</span> <span class="keyword">short</span>) b;</span><br><span class="line">        b = b &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> ( b &amp; x_to_w ) b = b ^ prim_poly;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是乘法和除法操作，加法减法对于p=2的情况等同于XOR操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NW (<span class="number">1</span> &lt;&lt; w)   <span class="comment">/* In other words, NW equals 2 to the w-th power */</span></span><span class="function"><span class="keyword">int</span> <span class="title">mult</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;    <span class="keyword">int</span> sum_log;    <span class="keyword">if</span> (a == <span class="number">0</span> || b == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;    sum_log = gflog[a] + gflog[b];    <span class="keyword">if</span> (sum_log &gt;= NW-<span class="number">1</span>) sum_log -= NW-<span class="number">1</span>;    <span class="keyword">return</span> gfilog[sum_log];&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;    <span class="keyword">int</span> diff_log;    <span class="keyword">if</span> (a == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;    <span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;    diff_log = gflog[a] - gflog[b];    <span class="keyword">if</span> (diff_log &lt; <span class="number">0</span>) diff_log += NW-<span class="number">1</span>;    <span class="keyword">return</span> gfilog[diff_log];&#125;</span><br></pre></td></tr></table></figure>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/有限域/">有限域</a> <a class="tag tag--primary tag--small t-link" href="/tags/素数/">素数</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/29/《程序员修炼之道》读后感/" data-tooltip="《The Pragmatic Programmer》读后感">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jiantao Fu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/29/《程序员修炼之道》读后感/" data-tooltip="《The Pragmatic Programmer》读后感">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/19/RS-FEC的基础-有限域/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
+        
+            <h4 id="about-card-name">Jiantao Fu</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                Software Engineer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</html>
