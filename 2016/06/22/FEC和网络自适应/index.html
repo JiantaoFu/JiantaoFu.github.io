@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiantao&#39;s Blog">
+    <title> - Jiantao&#39;s Blog</title>
+    <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Jiantao&#39;s Blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://jiantaofu.github.io">Jiantao&#39;s Blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+</nav>
+
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">(no title)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Wed Jun 22 2016 12:05:18 GMT-0700">
+        Jun 22, 2016
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h1 id="实时视频应用中的FEC和网络自适应"><a href="#实时视频应用中的FEC和网络自适应" class="headerlink" title="实时视频应用中的FEC和网络自适应"></a>实时视频应用中的FEC和网络自适应</h1><p>网络自适应（拥塞控制）是指根据网络的状况实时动态的去调整码率，什么时候调整主要是根据网络中的时延和丢包的情况来，当网络状况出现恶化的情况时，码率向下调，和FEC没什么关系，当要上调的时候，如果单纯依靠视频数据，很难做到精确的码率控制，不同质量的Video间，码率间隔可能会非常大，如果直接调整，会对网络造成比较大的冲击，导致拥塞。</p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><a href="https://tools.ietf.org/html/draft-singh-rmcat-adaptive-fec-03" target="_blank" rel="external">“Congestion Control Using FEC for Conversational Media”</a>对用FEC探测带宽有比较详细的说明。</p>
+<h3 id="内部状态"><a href="#内部状态" class="headerlink" title="内部状态"></a>内部状态</h3><p>FEC Probing过程中有四个状态:</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">           ^  .........</span><br><span class="line">           |<span class="string"> /         \                             /</span><br><span class="line">         t </span>|<span class="string">/           \                           /</span><br><span class="line">         h </span>|<span class="string">   +===+===+=\=+                       /</span><br><span class="line">         r </span>|<span class="string">   </span>|<span class="string"> F </span>|<span class="string">   </span>|<span class="string">  \</span>|<span class="string">           +===+   +==/+</span><br><span class="line">         o +===+---+   </span>|<span class="string">   \...........</span>|<span class="string">.F.</span>|<span class="string">...</span>|<span class="string">./F</span>|<span class="string">===+</span><br><span class="line">         u </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   +===+===+---+===+---+---+</span><br><span class="line">         g </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string"> F </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|</span><br><span class="line">         h |<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">===+---+   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|</span><br><span class="line">         p |<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|</span><br><span class="line">         u |<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|</span><br><span class="line">         t |<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   </span>|</span><br><span class="line">           |<span class="string"> s </span>|<span class="string"> p </span>|<span class="string"> i </span>|<span class="string"> s </span>|<span class="string"> d </span>|<span class="string"> p </span>|<span class="string"> i </span>|<span class="string"> p </span>|<span class="string"> s </span>|<span class="string"> p </span>|<span class="string"> i </span>|</span><br><span class="line">           +---+---+---+---+---+---+---+---+---+---+---+--&gt;</span><br><span class="line">                               time</span><br><span class="line"></span><br><span class="line">         Key:</span><br><span class="line">         +===+ Media with minimal FEC for error protection</span><br><span class="line"></span><br><span class="line">         +===+</span><br><span class="line">         |<span class="string"> F </span>|<span class="string"> Media with FEC for probing and error protection</span><br><span class="line">         +---+</span><br><span class="line"></span><br><span class="line">          ....</span><br><span class="line">         /    \  Available capacity</span><br><span class="line"></span><br><span class="line">         d,s,p,i: are the states: Decrease, Steady, Probe, Increase</span><br><span class="line">                </span><br><span class="line">``` </span><br><span class="line">STEADY: 这是一个过渡状态，在这个状态中评估带宽保持不变</span><br><span class="line"></span><br><span class="line">PROBE: 拥塞缓解时，通过增加FEC码率，但保持media的码率不变。</span><br><span class="line"></span><br><span class="line">DECREASE: 出现了拥塞，减少总的码率，但加上能保证错误恢复的最小FEC码率。</span><br><span class="line"></span><br><span class="line">INCREASE: 当探测到足够的带宽后，可以将部分FEC的码率给media码率使用（增加media码率，减少FEC码率），但也要保证错误恢复的最小FEC码率。如果出现丢包了，当这些丢包可以通过FEC恢复，那么可以维持media码率，减少FEC码率。但如果FEC都不能恢复，那么就应该当作拥塞处理，转入REDUCE状态。</span><br><span class="line"></span><br><span class="line">### 模块关系</span><br><span class="line"></span><br><span class="line">1. 网络自适应模块(Rate Control Module)根据RTCP反馈信息评估当前网络的带宽</span><br><span class="line">2. 如果评估带宽比之前的高，那么拥塞控制模块会通知FEC模块去探测带宽</span><br><span class="line">3. FEC模块根据自己内部的状态决定是否需要去探测，并通知Rate Control模块最终留给Media的可用带宽。</span><br><span class="line">4. FEC模块根据修复之后的丢包率来更新自己的内部状态。</span></span><br></pre></td></tr></table></figure>
+<pre><code>+ - - - - - - - - - - - - - - - - - - - - - - - -+
+| +--------------------------------------------+ |
+  |            Media Encoder/Decoder           |
+| +--------------------------------------------+ |
+            |                           |
+| +- -- -- -- -- -- -- -+        +- -- -- -- -+  |
+  |    Rate Control     |        |     RTP    |
+| |       Module        |        |            |  |
+  +- -- -- -- -- -- -- -+        +- -- -- -- -+
+|   ^        |                          |        |
+    |        |                          | Source
+|   | R      +--------------------+     |  RTP   |
+    | T                           |     |
+|   | C                           |     |        |
+    | P                           |     |
+|   |     +----------+     +----------------+    |
+    | F   | FEC Code |&lt;---&gt;|   FEC Module   |
+|   | B   +----------+     +----------------+    |
+    |                        |        |  |
+|   |------------------------+        |  |       |
+    |        RTCP FB           Repair |  | Source
+|   |                            RTP  |  |   RTP |
+    |                                 |  |
+| +--------------------------------------------+ |
+  |           RTP Processing  Layer            |
+| |                  (Queue)                   | |
+  +--------------------------------------------+
+|                        |                       |
+  +--------------------------------------------+
+| |             Transport Layer (UDP)          | |
+  +--------------------------------------------+
+|                        |                       |
+  +--------------------------------------------+
+| |                     IP                     | |
+  +--------------------------------------------+
+|                                                |
+| Endpoint                                       |
++ - - - - - - - - - - - - - - -  - - - - - - - - +
+</code></pre><p>```</p>
+<p>这里面有几个关键的问题:</p>
+<ol>
+<li>Video和FEC的带宽如何分配，FEC加的多了，能抗的丢包也就多，但是Video的质量会有一定影响。</li>
+<li>和网络自适应的协调，丢包达到一定阈值网络自适应才会下调评估带宽，FEC则必须能修复这种情况下的丢包。</li>
+<li>在有多路Video流的情况下，怎么加FEC，哪些流加，加多少。</li>
+<li>如何保证这种情况下Audio的质量。m</li>
+</ol>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/丢包检测/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/19/RS-FEC的基础-有限域/" data-tooltip="RS-FEC的基础-有限域">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jiantao Fu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/丢包检测/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/19/RS-FEC的基础-有限域/" data-tooltip="RS-FEC的基础-有限域">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/22/FEC和网络自适应/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
+        
+            <h4 id="about-card-name">Jiantao Fu</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                Software Engineer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</html>

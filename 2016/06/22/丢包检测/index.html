@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jiantao&#39;s Blog">
+    <title> - Jiantao&#39;s Blog</title>
+    <meta name="author" content="Jiantao Fu">
+    <meta name="description" content="Jiantao&#39;s Blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="http://jiantaofu.github.io">Jiantao&#39;s Blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=90"/>
+                
+            </a>
+            <span class="sidebar-profile-name hide-md">Jiantao Fu</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc hide-md">Home</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-categories">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc hide-md">Categories</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-tags">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc hide-md">Tags</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/all-archives">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc hide-md">Archives</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/#about">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc hide-md">About me</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://github.com/jiantaofu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc hide-md">GitHub</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="https://www.facebook.com/jeromyfu" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                        <span class="sidebar-button-desc hide-md">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="mailto:fuji246@gmail.com" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc hide-md">Mail</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+        <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link" href="http://jiantaofu.github.io/atom.xml">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc hide-md">RSS</span>
+                    </a>
+                </li>
+            
+        </ul>
+    
+</nav>
+
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">(no title)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Wed Jun 22 2016 17:31:20 GMT-0700">
+        Jun 22, 2016
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>#如何检测丢包</p>
+<p>IP网络中数据包丢失是比较常见的，偶尔还会出现一些乱序的情况，可能的原因是链路的负载均衡。对于FEC恢复的包来说，乱序则是一种非常常见的现象了。要检查乱序，也就是说当发现包序号有间隔时，需要再等等，等后的包收到一些后，再看是乱序还是丢包。</p>
+<p>先看几个例子，用1表示包收到，0表示包丢失，等待5个包的时间间隔，也就是说收到了5个包之后，第6个收到的包还不是之前期望收到的才认为是丢掉的，序号从1开始，”?”表示当前这个包的状态不确定:</p>
+<p>11110 11111 - 这个序列，收到包6时，还不能立即判断包5就丢了，要等到收到包11才能认为之前的包丢了。所以检测的结果是1111? 11111</p>
+<p>10101 00111 01 - 这个序列，包2的丢失要等到收到包12收到，后面的包4，6，7，11的状态是未定的。检测的结果是101?1??111?1</p>
+<p>10000 01111 11 - 这个序列, 当收到包12时，才能判断前面的包2,3,4,5,6都丢掉了。检测的结果是10000 01111 11</p>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>用m_seqExpct来存储当前期望收到的包序号，如果当前的包序号nowSeq比期望的m_seqExpct要大，那么[m_seqExpct, nowSeq)之间的包的状态都是未知的，需要等到后面的包收到才能确定。这里就需要对比期望的m_seqExpct要大的nowSeq做一个缓存，缓存的大小就是容忍的乱序大小，缓存内的序号按从小到大的顺序存储，当缓存满了的时候，就可以确定那些序号在[m_seqExpct, min(nowSeq, m_seqCache[0].seq))之间的包都是是丢掉的了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLossDetection::RecvPkt(<span class="keyword">uint16_t</span> seq)</span><br><span class="line">&#123;</span><br><span class="line">    PktRecvd(seq);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(m_initialized) &#123;</span><br><span class="line">        <span class="keyword">if</span>( seq == m_seqExpct ) &#123;</span><br><span class="line">            ++m_seqExpct;</span><br><span class="line">            UpdateCache();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(WrappingCompareLess16(m_seqExpct, seq)) &#123;</span><br><span class="line">            <span class="keyword">if</span>( m_cachedCnt &lt; ARRAY_LENGTH(m_seqCache) ) &#123;</span><br><span class="line">                CacheSeq(now, seq);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//cache is full, check seq less than the first one in cache</span></span><br><span class="line">                <span class="keyword">while</span>(WrappingCompareLess16(m_seqExpct, m_seqCache[<span class="number">0</span>].seq)) &#123;</span><br><span class="line">                    <span class="keyword">if</span>( m_seqExpct != seq ) &#123;</span><br><span class="line">                        PktDropped(m_seqExpct);</span><br><span class="line">                        ++m_seqExpct;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        ++m_seqExpct;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                UpdateCache();</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//recheck again because m_seqExpct may changed</span></span><br><span class="line">                <span class="keyword">if</span>( m_seqExpct == seq ) &#123;</span><br><span class="line">                    ++m_seqExpct;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>( WrappingCompareLess16(m_seqExpct, seq) ) &#123;</span><br><span class="line">                    CacheSeq(now, seq);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// duplicate or arrive too late</span></span><br><span class="line">        &#125;      </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        m_seqExpct = seq + <span class="number">1</span>;</span><br><span class="line">        m_initialized = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CLossDetection::UpdateCache()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// clear recvd pkts and move remaining pkts to front</span></span><br><span class="line">    <span class="keyword">if</span>(m_cachedCnt &lt;= ARRAY_LENGTH(m_seqCache)) &#123;</span><br><span class="line">        <span class="keyword">uint32_t</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; i&lt; m_cachedCnt; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(m_seqExpct == m_seqCache[i].seq) &#123;</span><br><span class="line">                ++m_seqExpct;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>( i!= <span class="number">0</span> ) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">uint32_t</span> j=i; j&lt;m_cachedCnt; ++j) &#123;</span><br><span class="line">                m_seqCache[j-i] = m_seqCache[j];</span><br><span class="line">            &#125;</span><br><span class="line">            m_cachedCnt -= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CLossDetection::CacheSeq(<span class="keyword">uint32_t</span> now, <span class="keyword">uint16_t</span> seq)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//at least one slot for seq</span></span><br><span class="line">    <span class="keyword">if</span>( m_cachedCnt &lt; ARRAY_LENGTH(m_seqCache) ) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int32_t</span> pivot = -<span class="number">1</span>;<span class="comment">//pos before insert</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int32_t</span> i=<span class="keyword">static_cast</span>&lt;<span class="keyword">int32_t</span>&gt;(m_cachedCnt)-<span class="number">1</span>; i&gt;=<span class="number">0</span> ; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span>( WrappingCompareLess16(m_seqCache[i].seq, seq) ) &#123;</span><br><span class="line">                pivot = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>( m_seqCache[i].seq == seq ) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int32_t</span> j=m_cachedCnt-<span class="number">1</span>; j&gt;pivot; --j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j &lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">int32_t</span>&gt;(ARRAY_LENGTH(m_seqCache)-<span class="number">1</span>) &amp;&amp; j&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">                m_seqCache[j+<span class="number">1</span>] = m_seqCache[j];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                assert(<span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(pivot+<span class="number">1</span> &lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">int32_t</span>&gt;(ARRAY_LENGTH(m_seqCache)) ) &#123;</span><br><span class="line">            m_seqCache[pivot+<span class="number">1</span>] = PktItem(now, seq);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            assert(<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ++m_cachedCnt;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">WrappingCompareLess</span><span class="params">(uint16_t l, uint16_t r)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">uint16_t</span> distDown = l - r;</span><br><span class="line">    <span class="keyword">uint16_t</span> distUp = r - l;</span><br><span class="line">    <span class="keyword">return</span> distUp &lt; distDown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/06/《scrum敏捷产品管理》读后感/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/FEC和网络自适应/" data-tooltip="(no title)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+        
+            <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jiantao Fu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/06/《scrum敏捷产品管理》读后感/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/FEC和网络自适应/" data-tooltip="(no title)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jiantaofu.github.io/2016/06/22/丢包检测/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/b2e648e70e0d3d2b8970e089ec487bc9?s=110"/>
+        
+            <h4 id="about-card-name">Jiantao Fu</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                Software Engineer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Jose, CA, USA
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/cover.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'jiantaoblog';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</html>
